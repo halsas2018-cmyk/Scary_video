@@ -1,0 +1,3 @@
+import video_assembler as va
+from pathlib import Path
+va.assemble_video_simple(Path("output/09_08_short_vids/08_09_01_groq_llama33_openai_acquires_presentation_startup_nextslide"))

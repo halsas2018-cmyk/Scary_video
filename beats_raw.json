@@ -1,0 +1,67 @@
+{
+  "beats": [
+    {
+      "type": "versus",
+      "text": "The US and China are courting allies in the AI race.",
+      "left": {
+        "label": "United States",
+        "value": "American AI ecosystem"
+      },
+      "right": {
+        "label": "China",
+        "value": "Chinese AI ecosystem"
+      }
+    },
+    {
+      "type": "key_statement",
+      "text": "Washington may ask dozens of nations to pick a side.",
+      "emphasisWords": ["Washington", "side"]
+    },
+    {
+      "type": "icon_text",
+      "text": "Countries cooperating with China could lose access to US tech coalitions.",
+      "icon": "warning"
+    },
+    {
+      "type": "key_statement",
+      "text": "Beijing pushes back, demanding digital sovereignty for every nation.",
+      "emphasisWords": ["Beijing", "sovereignty"]
+    },
+    {
+      "type": "key_statement",
+      "text": "AI competition is now a geopolitical showdown.",
+      "emphasisWords": ["geopolitical", "AI"]
+    },
+    {
+      "type": "chart_comparison",
+      "text": "Europe punches above its weight in AI research.",
+      "items": [
+        {
+          "label": "World Population Share",
+          "value": 6
+        },
+        {
+          "label": "World Researchers Share",
+          "value": 15
+        },
+        {
+          "label": "Highly Cited Publications Share",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "type": "quote_card",
+      "text": "Lagarde highlights Europe’s struggle to turn science into business.",
+      "quote": "One of the main problems is Europe's difficulty turning scientific excellence into commercial success, partly because its markets and financing remain too fragmented.",
+      "attribution": "Christine Lagarde"
+    },
+    {
+      "type": "progress_meter",
+      "text": "Euro‑area firms plan to spend about 9% of investment on AI by 2026.",
+      "value": 9,
+      "maxValue": 100,
+      "label": "AI investment share 2026"
+    }
+  ]
+}

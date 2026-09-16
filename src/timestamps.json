@@ -1,0 +1,787 @@
+[
+  {
+    "word": "Broadcom",
+    "start": 0.131,
+    "end": 0.572
+  },
+  {
+    "word": "is",
+    "start": 0.612,
+    "end": 0.672
+  },
+  {
+    "word": "courting",
+    "start": 0.732,
+    "end": 1.012
+  },
+  {
+    "word": "as",
+    "start": 1.092,
+    "end": 1.172
+  },
+  {
+    "word": "much",
+    "start": 1.232,
+    "end": 1.393
+  },
+  {
+    "word": "as",
+    "start": 1.433,
+    "end": 1.493
+  },
+  {
+    "word": "$70",
+    "start": 1.573,
+    "end": 1.853
+  },
+  {
+    "word": "billion",
+    "start": 1.893,
+    "end": 2.554
+  },
+  {
+    "word": "in",
+    "start": 2.594,
+    "end": 2.654
+  },
+  {
+    "word": "debt",
+    "start": 2.714,
+    "end": 2.934
+  },
+  {
+    "word": "to",
+    "start": 2.974,
+    "end": 3.054
+  },
+  {
+    "word": "bankroll",
+    "start": 3.115,
+    "end": 3.575
+  },
+  {
+    "word": "its",
+    "start": 3.715,
+    "end": 3.835
+  },
+  {
+    "word": "next",
+    "start": 3.935,
+    "end": 4.116
+  },
+  {
+    "word": "AI",
+    "start": 4.236,
+    "end": 4.476
+  },
+  {
+    "word": "chip.",
+    "start": 4.516,
+    "end": 4.736
+  },
+  {
+    "word": "Instead",
+    "start": 5.117,
+    "end": 5.377
+  },
+  {
+    "word": "of",
+    "start": 5.397,
+    "end": 5.437
+  },
+  {
+    "word": "borrowing",
+    "start": 5.477,
+    "end": 5.818
+  },
+  {
+    "word": "on",
+    "start": 5.878,
+    "end": 5.938
+  },
+  {
+    "word": "its",
+    "start": 5.958,
+    "end": 6.058
+  },
+  {
+    "word": "own",
+    "start": 6.098,
+    "end": 6.218
+  },
+  {
+    "word": "books,",
+    "start": 6.258,
+    "end": 6.518
+  },
+  {
+    "word": "it",
+    "start": 6.819,
+    "end": 6.859
+  },
+  {
+    "word": "will",
+    "start": 6.879,
+    "end": 6.999
+  },
+  {
+    "word": "set",
+    "start": 7.019,
+    "end": 7.139
+  },
+  {
+    "word": "up",
+    "start": 7.159,
+    "end": 7.239
+  },
+  {
+    "word": "a",
+    "start": 7.279,
+    "end": 7.319
+  },
+  {
+    "word": "separate",
+    "start": 7.379,
+    "end": 7.66
+  },
+  {
+    "word": "firm",
+    "start": 7.68,
+    "end": 7.9
+  },
+  {
+    "word": "that",
+    "start": 7.92,
+    "end": 8.04
+  },
+  {
+    "word": "buys",
+    "start": 8.08,
+    "end": 8.32
+  },
+  {
+    "word": "the",
+    "start": 8.361,
+    "end": 8.421
+  },
+  {
+    "word": "chips",
+    "start": 8.461,
+    "end": 8.721
+  },
+  {
+    "word": "and",
+    "start": 9.021,
+    "end": 9.101
+  },
+  {
+    "word": "leases",
+    "start": 9.161,
+    "end": 9.442
+  },
+  {
+    "word": "them",
+    "start": 9.462,
+    "end": 9.602
+  },
+  {
+    "word": "back",
+    "start": 9.662,
+    "end": 9.842
+  },
+  {
+    "word": "to",
+    "start": 9.882,
+    "end": 9.942
+  },
+  {
+    "word": "customers.",
+    "start": 9.982,
+    "end": 10.383
+  },
+  {
+    "word": "Broadcom",
+    "start": 10.823,
+    "end": 11.284
+  },
+  {
+    "word": "only",
+    "start": 11.444,
+    "end": 11.624
+  },
+  {
+    "word": "guarantees",
+    "start": 11.684,
+    "end": 12.165
+  },
+  {
+    "word": "part",
+    "start": 12.205,
+    "end": 12.345
+  },
+  {
+    "word": "of",
+    "start": 12.365,
+    "end": 12.425
+  },
+  {
+    "word": "that",
+    "start": 12.445,
+    "end": 12.585
+  },
+  {
+    "word": "loan,",
+    "start": 12.625,
+    "end": 12.886
+  },
+  {
+    "word": "meaning",
+    "start": 13.206,
+    "end": 13.406
+  },
+  {
+    "word": "the",
+    "start": 13.446,
+    "end": 13.506
+  },
+  {
+    "word": "real",
+    "start": 13.546,
+    "end": 13.747
+  },
+  {
+    "word": "risk",
+    "start": 13.807,
+    "end": 14.047
+  },
+  {
+    "word": "sits",
+    "start": 14.127,
+    "end": 14.327
+  },
+  {
+    "word": "with",
+    "start": 14.347,
+    "end": 14.447
+  },
+  {
+    "word": "the",
+    "start": 14.467,
+    "end": 14.548
+  },
+  {
+    "word": "separate",
+    "start": 14.608,
+    "end": 14.868
+  },
+  {
+    "word": "entity",
+    "start": 14.888,
+    "end": 15.148
+  },
+  {
+    "word": "if",
+    "start": 15.389,
+    "end": 15.469
+  },
+  {
+    "word": "a",
+    "start": 15.509,
+    "end": 15.529
+  },
+  {
+    "word": "customer",
+    "start": 15.589,
+    "end": 15.929
+  },
+  {
+    "word": "can't",
+    "start": 15.969,
+    "end": 16.149
+  },
+  {
+    "word": "pay.",
+    "start": 16.189,
+    "end": 16.41
+  },
+  {
+    "word": "Bank",
+    "start": 16.79,
+    "end": 17.01
+  },
+  {
+    "word": "of",
+    "start": 17.03,
+    "end": 17.09
+  },
+  {
+    "word": "America",
+    "start": 17.13,
+    "end": 17.491
+  },
+  {
+    "word": "warns",
+    "start": 17.531,
+    "end": 17.831
+  },
+  {
+    "word": "hidden",
+    "start": 17.891,
+    "end": 18.091
+  },
+  {
+    "word": "exposure",
+    "start": 18.131,
+    "end": 18.592
+  },
+  {
+    "word": "could",
+    "start": 18.632,
+    "end": 18.752
+  },
+  {
+    "word": "swell",
+    "start": 18.812,
+    "end": 19.072
+  },
+  {
+    "word": "to",
+    "start": 19.112,
+    "end": 19.433
+  },
+  {
+    "word": "$370",
+    "start": 19.473,
+    "end": 19.993
+  },
+  {
+    "word": "billion",
+    "start": 20.033,
+    "end": 20.634
+  },
+  {
+    "word": "by",
+    "start": 20.694,
+    "end": 20.814
+  },
+  {
+    "word": "2029,",
+    "start": 20.834,
+    "end": 21.595
+  },
+  {
+    "word": "though",
+    "start": 21.875,
+    "end": 22.035
+  },
+  {
+    "word": "analysts",
+    "start": 22.135,
+    "end": 22.475
+  },
+  {
+    "word": "say",
+    "start": 22.516,
+    "end": 22.696
+  },
+  {
+    "word": "the",
+    "start": 22.736,
+    "end": 22.816
+  },
+  {
+    "word": "worst",
+    "start": 22.836,
+    "end": 23.036
+  },
+  {
+    "word": "case",
+    "start": 23.076,
+    "end": 23.276
+  },
+  {
+    "word": "loss",
+    "start": 23.316,
+    "end": 23.577
+  },
+  {
+    "word": "is",
+    "start": 23.777,
+    "end": 23.857
+  },
+  {
+    "word": "manageable.",
+    "start": 23.897,
+    "end": 24.317
+  },
+  {
+    "word": "Nvidia",
+    "start": 24.738,
+    "end": 25.118
+  },
+  {
+    "word": "is",
+    "start": 25.198,
+    "end": 25.258
+  },
+  {
+    "word": "playing",
+    "start": 25.318,
+    "end": 25.558
+  },
+  {
+    "word": "a",
+    "start": 25.618,
+    "end": 25.679
+  },
+  {
+    "word": "similar",
+    "start": 25.759,
+    "end": 26.059
+  },
+  {
+    "word": "game,",
+    "start": 26.099,
+    "end": 26.339
+  },
+  {
+    "word": "eying",
+    "start": 26.72,
+    "end": 26.9
+  },
+  {
+    "word": "more",
+    "start": 26.94,
+    "end": 27.06
+  },
+  {
+    "word": "than",
+    "start": 27.08,
+    "end": 27.2
+  },
+  {
+    "word": "$500",
+    "start": 27.3,
+    "end": 27.54
+  },
+  {
+    "word": "billion",
+    "start": 27.841,
+    "end": 28.441
+  },
+  {
+    "word": "in",
+    "start": 28.481,
+    "end": 28.561
+  },
+  {
+    "word": "off-balance",
+    "start": 28.721,
+    "end": 29.162
+  },
+  {
+    "word": "sheet",
+    "start": 29.182,
+    "end": 29.362
+  },
+  {
+    "word": "deals,",
+    "start": 29.402,
+    "end": 29.682
+  },
+  {
+    "word": "while",
+    "start": 30.003,
+    "end": 30.143
+  },
+  {
+    "word": "Meta",
+    "start": 30.183,
+    "end": 30.423
+  },
+  {
+    "word": "already",
+    "start": 30.603,
+    "end": 30.863
+  },
+  {
+    "word": "raised",
+    "start": 30.924,
+    "end": 31.484
+  },
+  {
+    "word": "$27",
+    "start": 31.524,
+    "end": 31.764
+  },
+  {
+    "word": "billion",
+    "start": 31.804,
+    "end": 32.365
+  },
+  {
+    "word": "last",
+    "start": 32.405,
+    "end": 32.605
+  },
+  {
+    "word": "year,",
+    "start": 32.645,
+    "end": 32.805
+  },
+  {
+    "word": "using",
+    "start": 33.046,
+    "end": 33.226
+  },
+  {
+    "word": "the",
+    "start": 33.246,
+    "end": 33.326
+  },
+  {
+    "word": "same",
+    "start": 33.366,
+    "end": 33.546
+  },
+  {
+    "word": "trick.",
+    "start": 33.606,
+    "end": 33.826
+  },
+  {
+    "word": "The",
+    "start": 34.207,
+    "end": 34.287
+  },
+  {
+    "word": "gamble",
+    "start": 34.307,
+    "end": 34.587
+  },
+  {
+    "word": "works",
+    "start": 34.627,
+    "end": 34.827
+  },
+  {
+    "word": "while",
+    "start": 34.847,
+    "end": 35.027
+  },
+  {
+    "word": "AI",
+    "start": 35.127,
+    "end": 35.368
+  },
+  {
+    "word": "chips",
+    "start": 35.428,
+    "end": 35.608
+  },
+  {
+    "word": "are",
+    "start": 35.668,
+    "end": 35.748
+  },
+  {
+    "word": "scarce,",
+    "start": 35.788,
+    "end": 36.128
+  },
+  {
+    "word": "but",
+    "start": 36.449,
+    "end": 36.549
+  },
+  {
+    "word": "if",
+    "start": 36.569,
+    "end": 36.629
+  },
+  {
+    "word": "the",
+    "start": 36.669,
+    "end": 36.749
+  },
+  {
+    "word": "industry",
+    "start": 36.809,
+    "end": 37.169
+  },
+  {
+    "word": "overbills",
+    "start": 37.27,
+    "end": 37.71
+  },
+  {
+    "word": "and",
+    "start": 37.77,
+    "end": 37.83
+  },
+  {
+    "word": "demands",
+    "start": 37.87,
+    "end": 38.17
+  },
+  {
+    "word": "stalls,",
+    "start": 38.21,
+    "end": 38.511
+  },
+  {
+    "word": "those",
+    "start": 38.851,
+    "end": 39.031
+  },
+  {
+    "word": "guarantees",
+    "start": 39.071,
+    "end": 39.572
+  },
+  {
+    "word": "could",
+    "start": 39.612,
+    "end": 39.732
+  },
+  {
+    "word": "be",
+    "start": 39.752,
+    "end": 39.812
+  },
+  {
+    "word": "called",
+    "start": 39.852,
+    "end": 40.052
+  },
+  {
+    "word": "in",
+    "start": 40.112,
+    "end": 40.192
+  },
+  {
+    "word": "at",
+    "start": 40.212,
+    "end": 40.272
+  },
+  {
+    "word": "once.",
+    "start": 40.412,
+    "end": 40.573
+  },
+  {
+    "word": "If",
+    "start": 41.053,
+    "end": 41.133
+  },
+  {
+    "word": "that",
+    "start": 41.173,
+    "end": 41.294
+  },
+  {
+    "word": "happens,",
+    "start": 41.334,
+    "end": 41.694
+  },
+  {
+    "word": "a",
+    "start": 41.915,
+    "end": 41.955
+  },
+  {
+    "word": "$70",
+    "start": 42.035,
+    "end": 42.296
+  },
+  {
+    "word": "billion",
+    "start": 42.396,
+    "end": 42.977
+  },
+  {
+    "word": "debt",
+    "start": 43.017,
+    "end": 43.197
+  },
+  {
+    "word": "web",
+    "start": 43.217,
+    "end": 43.418
+  },
+  {
+    "word": "could",
+    "start": 43.458,
+    "end": 43.598
+  },
+  {
+    "word": "ripple",
+    "start": 43.678,
+    "end": 43.939
+  },
+  {
+    "word": "through",
+    "start": 44.019,
+    "end": 44.199
+  },
+  {
+    "word": "the",
+    "start": 44.219,
+    "end": 44.279
+  },
+  {
+    "word": "whole",
+    "start": 44.319,
+    "end": 44.5
+  },
+  {
+    "word": "tech",
+    "start": 44.54,
+    "end": 44.74
+  },
+  {
+    "word": "market,",
+    "start": 44.78,
+    "end": 45.061
+  },
+  {
+    "word": "turning",
+    "start": 45.401,
+    "end": 45.622
+  },
+  {
+    "word": "today's",
+    "start": 45.662,
+    "end": 45.922
+  },
+  {
+    "word": "financing",
+    "start": 46.043,
+    "end": 46.483
+  },
+  {
+    "word": "frenzy",
+    "start": 46.523,
+    "end": 46.884
+  },
+  {
+    "word": "into",
+    "start": 47.084,
+    "end": 47.225
+  },
+  {
+    "word": "tomorrow's",
+    "start": 47.265,
+    "end": 47.746
+  },
+  {
+    "word": "financial",
+    "start": 47.826,
+    "end": 48.247
+  },
+  {
+    "word": "shockwave.",
+    "start": 48.287,
+    "end": 48.728
+  }
+]

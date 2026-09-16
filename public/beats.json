@@ -1,0 +1,149 @@
+{
+  "per_sentence": [
+    {
+      "sentence": "ChatGPT just earned a first\u2011class degree by acing eight first\u2011year math exams.",
+      "visual": "Close\u2011up of a computer screen showing a chat window with AI responses.",
+      "search_term": "AI chatbot interface",
+      "media_type": "video"
+    },
+    {
+      "sentence": "ChatGPT just earned a first\u2011class degree by acing eight first\u2011year math exams.",
+      "visual": "Wide shot of a modern lecture hall with rows of seats and a projector screen.",
+      "search_term": "university lecture hall",
+      "media_type": "video"
+    },
+    {
+      "sentence": "ChatGPT just earned a first\u2011class degree by acing eight first\u2011year math exams.",
+      "visual": "Close\u2011up of a printed math exam with formulas and answer spaces.",
+      "search_term": "math exam paper",
+      "media_type": "photo"
+    },
+    {
+      "sentence": "Researchers fed the AI real university test questions from calculus to statistics and let it write the answers on its own.",
+      "visual": "Someone typing on a laptop, scrolling through a list of math problems.",
+      "search_term": "person typing laptop",
+      "media_type": "video"
+    },
+    {
+      "sentence": "Researchers fed the AI real university test questions from calculus to statistics and let it write the answers on its own.",
+      "visual": "Animated overlay of equations appearing on a screen as they are typed.",
+      "search_term": "digital math equations",
+      "media_type": "video"
+    },
+    {
+      "sentence": "When blind\u2011graded, the bot\u2019s scores matched the top 10\u202f% of students, a level usually reserved for the very best scholars.",
+      "visual": "A printed grade sheet showing an A+ and high percentile.",
+      "search_term": "grade report",
+      "media_type": "photo"
+    },
+    {
+      "sentence": "When blind\u2011graded, the bot\u2019s scores matched the top 10\u202f% of students, a level usually reserved for the very best scholars.",
+      "visual": "A young student jumping with joy holding a test paper.",
+      "search_term": "student celebrating",
+      "media_type": "video"
+    },
+    {
+      "sentence": "Even stranger, its results were far less scattered than human scores\u2014ChatGPT was consistently near the top on every topic.",
+      "visual": "Line chart where AI scores form a tight, high band across all subjects.",
+      "search_term": "graph of consistent scores",
+      "media_type": "video"
+    },
+    {
+      "sentence": "Even stranger, its results were far less scattered than human scores\u2014ChatGPT was consistently near the top on every topic.",
+      "visual": "Futuristic animation of a glowing neural network pulsing steadily.",
+      "search_term": "AI brain animation",
+      "media_type": "video"
+    },
+    {
+      "sentence": "That steadiness worries professors, because traditional timed, closed\u2011book papers can\u2019t tell if a student used a hidden AI helper.",
+      "visual": "A university professor rubbing his chin, looking thoughtful and uneasy.",
+      "search_term": "professor concerned",
+      "media_type": "video"
+    },
+    {
+      "sentence": "That steadiness worries professors, because traditional timed, closed\u2011book papers can\u2019t tell if a student used a hidden AI helper.",
+      "visual": "Rows of desks in a silent hall, lights dimmed, suggesting an exam setting.",
+      "search_term": "empty exam hall",
+      "media_type": "video"
+    },
+    {
+      "sentence": "The study\u2019s authors say it\u2019s a wake\u2011up call: exams need to change, focusing on thinking steps rather than just final answers.",
+      "visual": "A teacher sketching a new type of problem on a whiteboard.",
+      "search_term": "teacher whiteboard planning",
+      "media_type": "video"
+    },
+    {
+      "sentence": "The study\u2019s authors say it\u2019s a wake\u2011up call: exams need to change, focusing on thinking steps rather than just final answers.",
+      "visual": "A small group of educators discussing ideas around a table with sticky notes.",
+      "search_term": "creative brainstorming meeting",
+      "media_type": "video"
+    },
+    {
+      "sentence": "If schools redesign assessments now, we might keep learning honest and still let AI boost creativity.",
+      "visual": "Students gathered around a holographic AI avatar projecting ideas.",
+      "search_term": "students collaborating hologram",
+      "media_type": "video"
+    },
+    {
+      "sentence": "If schools redesign assessments now, we might keep learning honest and still let AI boost creativity.",
+      "visual": "A bright sunrise casting golden light over university buildings, symbolizing a new start.",
+      "search_term": "sunrise over campus",
+      "media_type": "video"
+    }
+  ],
+  "headline": "ChatGPT Gets First\u2011Class Degree in Math",
+  "keywords_for_stock_search": [
+    "AI chatbot interface",
+    "university lecture hall",
+    "math exam paper",
+    "person typing laptop",
+    "digital math equations",
+    "grade report",
+    "student celebrating",
+    "graph of consistent scores",
+    "AI brain animation",
+    "professor concerned",
+    "empty exam hall",
+    "teacher whiteboard planning",
+    "creative brainstorming meeting",
+    "students collaborating hologram",
+    "sunrise over campus"
+  ],
+  "free_stock_sources": [
+    "https://pexels.com (free, no API key for manual download)",
+    "https://pixabay.com (free, no API key)",
+    "https://coverr.co (free stock video)",
+    "https://mixkit.co (free stock video)"
+  ],
+  "suggested_bgm_mood": "Neutral/curious \u2014 calm piano or ambient",
+  "sentence_to_asset_indices": [
+    [
+      0,
+      3
+    ],
+    [
+      3,
+      5
+    ],
+    [
+      5,
+      7
+    ],
+    [
+      7,
+      9
+    ],
+    [
+      9,
+      11
+    ],
+    [
+      11,
+      13
+    ],
+    [
+      13,
+      15
+    ]
+  ]
+}

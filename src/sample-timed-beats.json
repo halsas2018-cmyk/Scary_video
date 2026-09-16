@@ -1,0 +1,141 @@
+{
+  "fps": 30,
+  "totalDurationInFrames": 801,
+  "beats": [
+    {
+      "type": "versus",
+      "text": "The US and China are courting allies in the AI race.",
+      "left": {
+        "label": "United States",
+        "value": "American AI ecosystem"
+      },
+      "right": {
+        "label": "China",
+        "value": "Chinese AI ecosystem"
+      },
+      "startSeconds": 0.111,
+      "endSeconds": 2.855,
+      "startFrame": 3,
+      "endFrame": 86,
+      "durationInFrames": 83
+    },
+    {
+      "type": "key_statement",
+      "text": "Washington may ask dozens of nations to pick a side.",
+      "emphasisWords": [
+        "Washington",
+        "side"
+      ],
+      "startSeconds": 3.336,
+      "endSeconds": 5.599,
+      "startFrame": 100,
+      "endFrame": 168,
+      "durationInFrames": 68
+    },
+    {
+      "type": "icon_text",
+      "text": "Countries cooperating with China could",
+      "icon": "warning",
+      "startSeconds": 5.959,
+      "endSeconds": 7.541,
+      "startFrame": 179,
+      "endFrame": 226,
+      "durationInFrames": 47
+    },
+    {
+      "type": "icon_text",
+      "text": "lose access to US tech coalitions.",
+      "icon": "warning",
+      "startSeconds": 7.601,
+      "endSeconds": 9.644,
+      "startFrame": 228,
+      "endFrame": 289,
+      "durationInFrames": 61
+    },
+    {
+      "type": "key_statement",
+      "text": "Beijing pushes back, demanding",
+      "emphasisWords": [
+        "Beijing",
+        "sovereignty"
+      ],
+      "startSeconds": 10.085,
+      "endSeconds": 11.827,
+      "startFrame": 303,
+      "endFrame": 355,
+      "durationInFrames": 52
+    },
+    {
+      "type": "key_statement",
+      "text": "digital sovereignty for every nation.",
+      "emphasisWords": [
+        "Beijing",
+        "sovereignty"
+      ],
+      "startSeconds": 11.887,
+      "endSeconds": 13.63,
+      "startFrame": 357,
+      "endFrame": 409,
+      "durationInFrames": 52
+    },
+    {
+      "type": "key_statement",
+      "text": "AI competition is now a geopolitical showdown.",
+      "emphasisWords": [
+        "geopolitical",
+        "AI"
+      ],
+      "startSeconds": 14.01,
+      "endSeconds": 16.333,
+      "startFrame": 420,
+      "endFrame": 490,
+      "durationInFrames": 70
+    },
+    {
+      "type": "chart_comparison",
+      "text": "Europe punches above its weight in AI research.",
+      "items": [
+        {
+          "label": "World Population Share",
+          "value": 6
+        },
+        {
+          "label": "World Researchers Share",
+          "value": 15
+        },
+        {
+          "label": "Highly Cited Publications Share",
+          "value": 20
+        }
+      ],
+      "startSeconds": 16.754,
+      "endSeconds": 19.177,
+      "startFrame": 503,
+      "endFrame": 575,
+      "durationInFrames": 72
+    },
+    {
+      "type": "quote_card",
+      "text": "Lagarde highlights Europe\u2019s struggle to turn science into business.",
+      "quote": "One of the main problems is Europe's difficulty turning scientific excellence into commercial success, partly because its markets and financing remain too fragmented.",
+      "attribution": "Christine Lagarde",
+      "startSeconds": 19.618,
+      "endSeconds": 22.402,
+      "startFrame": 589,
+      "endFrame": 672,
+      "durationInFrames": 83
+    },
+    {
+      "type": "progress_meter",
+      "text": "Euro\u2011area firms plan to spend about 9% of investment on AI by 2026.",
+      "value": 9,
+      "maxValue": 100,
+      "label": "AI investment share 2026",
+      "startSeconds": 22.902,
+      "endSeconds": 26.688,
+      "startFrame": 687,
+      "endFrame": 801,
+      "durationInFrames": 114
+    }
+  ]
+}

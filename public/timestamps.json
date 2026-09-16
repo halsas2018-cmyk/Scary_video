@@ -1,0 +1,667 @@
+[
+  {
+    "word": "Chat",
+    "start": 0.131,
+    "end": 0.291
+  },
+  {
+    "word": "GPT",
+    "start": 0.311,
+    "end": 0.851
+  },
+  {
+    "word": "just",
+    "start": 0.932,
+    "end": 1.092
+  },
+  {
+    "word": "earned",
+    "start": 1.152,
+    "end": 1.292
+  },
+  {
+    "word": "a",
+    "start": 1.312,
+    "end": 1.352
+  },
+  {
+    "word": "first-class",
+    "start": 1.432,
+    "end": 1.952
+  },
+  {
+    "word": "degree",
+    "start": 1.972,
+    "end": 2.272
+  },
+  {
+    "word": "by",
+    "start": 2.432,
+    "end": 2.552
+  },
+  {
+    "word": "acing",
+    "start": 2.713,
+    "end": 2.973
+  },
+  {
+    "word": "eight",
+    "start": 3.073,
+    "end": 3.233
+  },
+  {
+    "word": "first-year",
+    "start": 3.353,
+    "end": 3.713
+  },
+  {
+    "word": "math",
+    "start": 3.753,
+    "end": 3.953
+  },
+  {
+    "word": "exams.",
+    "start": 3.993,
+    "end": 4.373
+  },
+  {
+    "word": "Researchers",
+    "start": 4.854,
+    "end": 5.314
+  },
+  {
+    "word": "fed",
+    "start": 5.394,
+    "end": 5.594
+  },
+  {
+    "word": "the",
+    "start": 5.614,
+    "end": 5.714
+  },
+  {
+    "word": "AI",
+    "start": 5.814,
+    "end": 6.134
+  },
+  {
+    "word": "Rayal",
+    "start": 6.215,
+    "end": 6.555
+  },
+  {
+    "word": "University",
+    "start": 6.615,
+    "end": 7.095
+  },
+  {
+    "word": "test",
+    "start": 7.135,
+    "end": 7.355
+  },
+  {
+    "word": "questions",
+    "start": 7.415,
+    "end": 7.795
+  },
+  {
+    "word": "from",
+    "start": 7.815,
+    "end": 7.955
+  },
+  {
+    "word": "calculus",
+    "start": 7.996,
+    "end": 8.456
+  },
+  {
+    "word": "to",
+    "start": 8.476,
+    "end": 8.556
+  },
+  {
+    "word": "statistics",
+    "start": 8.576,
+    "end": 9.096
+  },
+  {
+    "word": "and",
+    "start": 9.356,
+    "end": 9.436
+  },
+  {
+    "word": "let",
+    "start": 9.456,
+    "end": 9.576
+  },
+  {
+    "word": "it",
+    "start": 9.596,
+    "end": 9.636
+  },
+  {
+    "word": "write",
+    "start": 9.676,
+    "end": 9.817
+  },
+  {
+    "word": "the",
+    "start": 9.837,
+    "end": 9.937
+  },
+  {
+    "word": "answers",
+    "start": 9.997,
+    "end": 10.277
+  },
+  {
+    "word": "on",
+    "start": 10.317,
+    "end": 10.397
+  },
+  {
+    "word": "its",
+    "start": 10.437,
+    "end": 10.537
+  },
+  {
+    "word": "own.",
+    "start": 10.617,
+    "end": 10.757
+  },
+  {
+    "word": "When",
+    "start": 11.137,
+    "end": 11.317
+  },
+  {
+    "word": "blind-graded,",
+    "start": 11.357,
+    "end": 11.898
+  },
+  {
+    "word": "the",
+    "start": 12.138,
+    "end": 12.238
+  },
+  {
+    "word": "bot",
+    "start": 12.278,
+    "end": 12.478
+  },
+  {
+    "word": "scores",
+    "start": 12.498,
+    "end": 12.798
+  },
+  {
+    "word": "matched",
+    "start": 12.898,
+    "end": 13.158
+  },
+  {
+    "word": "the",
+    "start": 13.178,
+    "end": 13.259
+  },
+  {
+    "word": "top",
+    "start": 13.279,
+    "end": 13.719
+  },
+  {
+    "word": "10%",
+    "start": 13.759,
+    "end": 14.039
+  },
+  {
+    "word": "of",
+    "start": 14.059,
+    "end": 14.119
+  },
+  {
+    "word": "students,",
+    "start": 14.159,
+    "end": 14.479
+  },
+  {
+    "word": "a",
+    "start": 14.839,
+    "end": 14.879
+  },
+  {
+    "word": "level",
+    "start": 14.919,
+    "end": 15.16
+  },
+  {
+    "word": "usually",
+    "start": 15.28,
+    "end": 15.56
+  },
+  {
+    "word": "reserved",
+    "start": 15.6,
+    "end": 15.96
+  },
+  {
+    "word": "for",
+    "start": 15.98,
+    "end": 16.08
+  },
+  {
+    "word": "the",
+    "start": 16.1,
+    "end": 16.16
+  },
+  {
+    "word": "very",
+    "start": 16.22,
+    "end": 16.48
+  },
+  {
+    "word": "best",
+    "start": 16.54,
+    "end": 16.72
+  },
+  {
+    "word": "scholars.",
+    "start": 16.761,
+    "end": 17.141
+  },
+  {
+    "word": "Even",
+    "start": 17.641,
+    "end": 17.801
+  },
+  {
+    "word": "stranger,",
+    "start": 17.841,
+    "end": 18.221
+  },
+  {
+    "word": "its",
+    "start": 18.542,
+    "end": 18.642
+  },
+  {
+    "word": "results",
+    "start": 18.682,
+    "end": 18.942
+  },
+  {
+    "word": "were",
+    "start": 18.962,
+    "end": 19.102
+  },
+  {
+    "word": "far",
+    "start": 19.162,
+    "end": 19.362
+  },
+  {
+    "word": "less",
+    "start": 19.442,
+    "end": 19.622
+  },
+  {
+    "word": "scattered",
+    "start": 19.722,
+    "end": 20.082
+  },
+  {
+    "word": "than",
+    "start": 20.102,
+    "end": 20.222
+  },
+  {
+    "word": "human",
+    "start": 20.282,
+    "end": 20.543
+  },
+  {
+    "word": "scores.",
+    "start": 20.563,
+    "end": 20.863
+  },
+  {
+    "word": "Chat",
+    "start": 21.223,
+    "end": 21.403
+  },
+  {
+    "word": "GPT",
+    "start": 21.423,
+    "end": 21.943
+  },
+  {
+    "word": "was",
+    "start": 22.064,
+    "end": 22.184
+  },
+  {
+    "word": "consistently",
+    "start": 22.224,
+    "end": 22.764
+  },
+  {
+    "word": "near",
+    "start": 22.844,
+    "end": 22.984
+  },
+  {
+    "word": "the",
+    "start": 23.024,
+    "end": 23.084
+  },
+  {
+    "word": "top",
+    "start": 23.124,
+    "end": 23.364
+  },
+  {
+    "word": "on",
+    "start": 23.624,
+    "end": 23.704
+  },
+  {
+    "word": "every",
+    "start": 23.865,
+    "end": 24.025
+  },
+  {
+    "word": "topic.",
+    "start": 24.045,
+    "end": 24.365
+  },
+  {
+    "word": "That's",
+    "start": 24.745,
+    "end": 24.905
+  },
+  {
+    "word": "steadiness",
+    "start": 24.945,
+    "end": 25.386
+  },
+  {
+    "word": "worries",
+    "start": 25.426,
+    "end": 25.727
+  },
+  {
+    "word": "professors,",
+    "start": 25.767,
+    "end": 26.268
+  },
+  {
+    "word": "because",
+    "start": 26.548,
+    "end": 26.789
+  },
+  {
+    "word": "traditional",
+    "start": 26.829,
+    "end": 27.289
+  },
+  {
+    "word": "time,",
+    "start": 27.309,
+    "end": 27.63
+  },
+  {
+    "word": "close",
+    "start": 27.91,
+    "end": 28.171
+  },
+  {
+    "word": "book",
+    "start": 28.211,
+    "end": 28.351
+  },
+  {
+    "word": "papers",
+    "start": 28.391,
+    "end": 28.672
+  },
+  {
+    "word": "can't",
+    "start": 28.732,
+    "end": 28.932
+  },
+  {
+    "word": "tell",
+    "start": 28.972,
+    "end": 29.193
+  },
+  {
+    "word": "if",
+    "start": 29.313,
+    "end": 29.393
+  },
+  {
+    "word": "a",
+    "start": 29.413,
+    "end": 29.453
+  },
+  {
+    "word": "student",
+    "start": 29.513,
+    "end": 29.794
+  },
+  {
+    "word": "used",
+    "start": 29.894,
+    "end": 30.034
+  },
+  {
+    "word": "a",
+    "start": 30.074,
+    "end": 30.114
+  },
+  {
+    "word": "hidden",
+    "start": 30.154,
+    "end": 30.335
+  },
+  {
+    "word": "AI",
+    "start": 30.355,
+    "end": 30.595
+  },
+  {
+    "word": "helper.",
+    "start": 30.635,
+    "end": 30.895
+  },
+  {
+    "word": "The",
+    "start": 31.276,
+    "end": 31.376
+  },
+  {
+    "word": "studies",
+    "start": 31.396,
+    "end": 31.697
+  },
+  {
+    "word": "authors",
+    "start": 31.757,
+    "end": 32.017
+  },
+  {
+    "word": "say",
+    "start": 32.057,
+    "end": 32.218
+  },
+  {
+    "word": "it's",
+    "start": 32.258,
+    "end": 32.358
+  },
+  {
+    "word": "a",
+    "start": 32.398,
+    "end": 32.418
+  },
+  {
+    "word": "wake",
+    "start": 32.458,
+    "end": 32.638
+  },
+  {
+    "word": "up",
+    "start": 32.698,
+    "end": 32.779
+  },
+  {
+    "word": "call.",
+    "start": 32.799,
+    "end": 33.039
+  },
+  {
+    "word": "Exams",
+    "start": 33.42,
+    "end": 33.76
+  },
+  {
+    "word": "need",
+    "start": 33.8,
+    "end": 33.921
+  },
+  {
+    "word": "to",
+    "start": 33.941,
+    "end": 34.001
+  },
+  {
+    "word": "change,",
+    "start": 34.041,
+    "end": 34.361
+  },
+  {
+    "word": "focusing",
+    "start": 34.682,
+    "end": 35.042
+  },
+  {
+    "word": "on",
+    "start": 35.083,
+    "end": 35.163
+  },
+  {
+    "word": "thinking",
+    "start": 35.223,
+    "end": 35.523
+  },
+  {
+    "word": "steps",
+    "start": 35.563,
+    "end": 35.844
+  },
+  {
+    "word": "rather",
+    "start": 35.904,
+    "end": 36.144
+  },
+  {
+    "word": "than",
+    "start": 36.164,
+    "end": 36.305
+  },
+  {
+    "word": "just",
+    "start": 36.385,
+    "end": 36.585
+  },
+  {
+    "word": "final",
+    "start": 36.645,
+    "end": 36.886
+  },
+  {
+    "word": "answers.",
+    "start": 36.946,
+    "end": 37.226
+  },
+  {
+    "word": "If",
+    "start": 37.687,
+    "end": 37.787
+  },
+  {
+    "word": "schools",
+    "start": 37.827,
+    "end": 38.128
+  },
+  {
+    "word": "redesign",
+    "start": 38.168,
+    "end": 38.568
+  },
+  {
+    "word": "assessments",
+    "start": 38.588,
+    "end": 39.029
+  },
+  {
+    "word": "now,",
+    "start": 39.089,
+    "end": 39.29
+  },
+  {
+    "word": "we",
+    "start": 39.57,
+    "end": 39.67
+  },
+  {
+    "word": "might",
+    "start": 39.71,
+    "end": 39.891
+  },
+  {
+    "word": "keep",
+    "start": 39.931,
+    "end": 40.111
+  },
+  {
+    "word": "learning",
+    "start": 40.151,
+    "end": 40.391
+  },
+  {
+    "word": "honest,",
+    "start": 40.432,
+    "end": 40.732
+  },
+  {
+    "word": "and",
+    "start": 41.033,
+    "end": 41.113
+  },
+  {
+    "word": "still",
+    "start": 41.173,
+    "end": 41.393
+  },
+  {
+    "word": "let",
+    "start": 41.433,
+    "end": 41.553
+  },
+  {
+    "word": "AI",
+    "start": 41.694,
+    "end": 41.994
+  },
+  {
+    "word": "boost",
+    "start": 42.054,
+    "end": 42.255
+  },
+  {
+    "word": "creativity.",
+    "start": 42.295,
+    "end": 42.816
+  }
+]

@@ -1,0 +1,13 @@
+.env
+output/
+__pycache__/
+*.srt
+_bg_gradient.png
+.aider*
+
+node_modules/
+out/
+
+.agents/
+.claude/skills/
+pandoc-*.deb

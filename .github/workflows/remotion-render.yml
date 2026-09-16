@@ -1,0 +1,33 @@
+name: Render Remotion Video
+
+on:
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Render Remotion video
+        run: |
+          npx remotion render ShortsComposition \
+            --props=public/remotion_props.json \
+            --output=output/remotion-render.mp4
+
+      - name: Upload rendered video
+        uses: actions/upload-artifact@v4
+        with:
+          name: remotion-video
+          path: output/remotion-render.mp4
