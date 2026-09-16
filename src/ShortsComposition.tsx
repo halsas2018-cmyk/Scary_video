@@ -238,9 +238,20 @@ export const ShortsCompositionMetadata: CalculateMetadataFunction<ShortsComposit
     return acc + Math.max(30, Math.round((shot.duration_seconds || 3.0) * fps));
   }, 0);
 
+  // The sum of shot durations can be shorter than the actual audio because
+  // WhisperX sentence timings include inter-sentence pauses/gaps. Extend the
+  // composition to cover the full narration timeline using the last real
+  // WhisperX word timestamp — never an invented value.
+  const words = activeProps.words || [];
+  let minNarrationFrames = totalFrames;
+  if (words.length > 0) {
+    const lastWordEnd = words[words.length - 1].end;
+    minNarrationFrames = Math.ceil(lastWordEnd * fps);
+  }
+
   return {
     props: activeProps,
-    durationInFrames: Math.max(totalFrames, 30),
+    durationInFrames: Math.max(totalFrames, minNarrationFrames, 30),
     fps,
   };
 };

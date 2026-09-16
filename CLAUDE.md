@@ -127,3 +127,11 @@ WhisperX word-level timestamps are matched to sentences in two phases:
 - **Validated**: Confirmed via a 30-frame render (`npx remotion render ShortsComposition --frames=0-29`) that exits cleanly with exit code 0.
 
 Note: `@remotion/effects` (brightness, contrast, saturation, vignette, noise, whiteNoise) is installed and available, but its `effects` prop only works on canvas-based components (`Img`→`CanvasImage`, `<HtmlInCanvas>`). `OffthreadVideo` does not support the `effects` prop, so CSS filters on a wrapper container were used instead for a uniform treatment across both video and photo assets.
+
+## 8. Composition Duration Fix
+
+**`ShortsCompositionMetadata` in `ShortsComposition.tsx`**: The composition duration was previously computed by summing each shot's `duration_seconds` (e.g. 59.8s), which ignored the inter-sentence pauses/gaps present in WhisperX timings. This caused the rendered video to cut off ~8 seconds of narration (68.5s audio vs. 60s render).
+
+**Fix**: After computing the sum of shot durations, the metadata function now checks the `words` array (actual WhisperX word timestamps) and extends `durationInFrames` to `ceil(lastWordEnd * fps)` if that is larger. This uses the real last WhisperX word's `end` timestamp — not a hardcoded offset — to guarantee the composition always covers the full narration timeline.
+
+**Validated**: `npx remotion compositions` now reports `ShortsComposition 30 1080x1920 2046 (68.20 sec)`, matching the narration duration (68.472s) and last WhisperX word end (68.196s). A 30-frame render exits cleanly with code 0.
