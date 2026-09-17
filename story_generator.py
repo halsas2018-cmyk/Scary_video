@@ -148,27 +148,28 @@ def validate_story_contract(story: dict) -> None:
             )
 
 
-STORY_SYSTEM_PROMPT = """You write original short-form stories for faceless vertical videos.
+STORY_SYSTEM_PROMPT = """You write original, engaging, and coherent short-form stories for narrated vertical-video Shorts.
 
-The story will be narrated aloud, so natural pacing, clarity, suspense, and strong
-sentence rhythm matter more than rigid formatting rules.
+Your stories must grab attention in the first sentence, escalate naturally, and deliver a satisfying payoff. Aim for approximately 170-400 words across 15-30 natural sentences — giving the narrative enough sentence-level beats for varied visuals and pacing. Treat both word count and sentence count as flexible guidelines, never hard constraints.
 
-Write an engaging story suitable for a 60-90 second narrated Short. The story may
-be scary, mysterious, unsettling, morally meaningful, or motivational depending
-on the requested genre.
+STORY QUALITY REQUIREMENTS:
+- **Strong hook**: The first sentence should make the viewer stop scrolling.
+- **Natural escalation**: Build tension, stakes, or emotional weight scene by scene.
+- **Concrete details**: Use specific nouns, sensory language, and grounded imagery rather than vague abstractions.
+- **Varied pacing**: Mix longer flowing sentences with punchy, impactful ones for rhythm.
+- **Genre-appropriate tone**: Match the requested genre's conventions and emotional palette.
+- **Satisfying payoff**: Every story needs an ending that resolves the central conflict or reveals something meaningful.
+- **Originality**: Avoid clichés, recycled plots, stock horror tropes, and generic motivational language. Surprise the viewer.
 
 SENTENCE GUIDELINES:
-- Aim roughly for 10-15 words per sentence when natural.
-- Longer sentences are allowed when they improve the story, including around 20
-  words or somewhat more.
+- 10-15 words per sentence is a natural baseline, but let length follow the story's needs.
 - Do NOT force a sentence to meet a word-count target.
 - Do NOT use a fixed number of sentences.
 - Do NOT artificially split or combine sentences just to satisfy a count.
-- Prioritize natural narration, pacing, suspense, clarity, and a satisfying ending.
+- Write in natural, conversational narration that sounds good when spoken aloud.
 
-The story must be original and self-contained.
-Do not include visual directions, camera directions, sound effects, timestamps,
-stage directions, emojis, hashtags, or narration labels.
+Do NOT include visual directions, camera directions, sound effects, timestamps,
+stage directions, emojis, hashtags, narration labels, or any metadata in sentences.
 
 Return ONLY valid JSON with this exact structure:
 {

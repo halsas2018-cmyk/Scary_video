@@ -170,7 +170,7 @@ def _fallback_visual_plan(sentences: list[str], title: str, genre: str = None) -
     Genre-aware: picks search terms and visual descriptions that match the
     story's genre when the RELATABLE_TERMS list doesn't yield a match.
     """
-    genre_terms = GENRE_SEARCH_TERMS.get((genre or "").lower(), [])
+    genre_terms = GREYHOUND_GENRE_TERMS.get((genre or "").lower(), [])
     return [
         {
             "sentence": s,
