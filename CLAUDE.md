@@ -135,3 +135,16 @@ Note: `@remotion/effects` (brightness, contrast, saturation, vignette, noise, wh
 **Fix**: After computing the sum of shot durations, the metadata function now checks the `words` array (actual WhisperX word timestamps) and extends `durationInFrames` to `ceil(lastWordEnd * fps)` if that is larger. This uses the real last WhisperX word's `end` timestamp — not a hardcoded offset — to guarantee the composition always covers the full narration timeline.
 
 **Validated**: `npx remotion compositions` now reports `ShortsComposition 30 1080x1920 2046 (68.20 sec)`, matching the narration duration (68.472s) and last WhisperX word end (68.196s). A 30-frame render exits cleanly with code 0.
+
+## 9. Persistent Global Story Deduplication
+
+The old dedup system had two bugs: `_fingerprint()` only hashed the story title (so the same story with a different title was never detected), and the dedup log was daily-scoped (`output/<daily>/_generated_log.json`) so it didn't survive across dates.
+
+**Fix** in `run_pipeline.py`:
+
+- **`_fingerprint(story, premise=None)`**: Now generates a SHA-256 hash from normalized genre + ordered sentences (each lowercased, whitespace-collapsed) + premise when provided. The title is deliberately excluded so identical story content with different titles is still detected as a duplicate.
+- **Persistent global dedup store** (`output/_global_dedup.json`): A JSON list of fingerprint strings stored at the project root, surviving across all dates and runs. Functions `_load_global_dedup()`, `_save_global_dedup()`, `_is_duplicate()`, and `_add_global_fingerprint()` manage it.
+- **Dedup check with retry**: After `generate_story()` succeeds, `_is_duplicate()` is called. If the story is a duplicate, the pipeline regenerates up to 3 times. If all retries produce duplicates, the story is skipped.
+- **Daily log preserved**: The existing daily `_generated_log.json` is kept for date-based history; it now uses the same content-based fingerprint as its key.
+
+**Validated**: Tested that the same story content with a different title produces an identical fingerprint (detected as duplicate), while genuinely different stories produce distinct fingerprints (accepted). Premise is included in the fingerprint. The global dedup file persists to disk.

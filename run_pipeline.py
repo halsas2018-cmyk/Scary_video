@@ -48,6 +48,7 @@ Flags:
 """
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -138,10 +139,68 @@ def _save_dedupe_log(base_outdir: Path, entries: list[dict]):
         print(f"  [warn] Could not save dedupe log: {e}")
 
 
-def _fingerprint(story: dict) -> str:
-    """Generate a fingerprint for a story."""
-    title = story.get("title", "")
-    return re.sub(r"\W+", "", title.lower())[:60]
+def _fingerprint(story: dict, premise: str = None) -> str:
+    """Generate a content fingerprint from normalized story content.
+
+    Normalizes genre, ordered sentences (each lowercased and whitespace-collapsed),
+    and premise (when provided) into a stable JSON blob, then returns a SHA-256
+    hash. The title is deliberately excluded so that the same story with a
+    different title is still detected as a duplicate.
+    """
+    normalized = {
+        "genre": story.get("genre", "").lower(),
+        "sentences": [" ".join(s.lower().split()) for s in story.get("sentences", [])],
+    }
+    if premise is not None and premise.strip():
+        normalized["premise"] = " ".join(premise.lower().split())
+    content = json.dumps(normalized, sort_keys=True, ensure_ascii=False)
+    return hashlib.sha256(content.encode("utf-8")).hexdigest()[:16]
+
+
+# ---------------------------------------------------------------------------
+# Persistent global deduplicate store (survives across dates and runs)
+# ---------------------------------------------------------------------------
+
+_GLOBAL_DEDUP_PATH = Path(__file__).parent / "output" / "_global_dedup.json"
+
+
+def _load_global_dedup() -> set:
+    """Load the global fingerprint set, returning empty set on any error."""
+    try:
+        if _GLOBAL_DEDUP_PATH.exists():
+            content = _GLOBAL_DEDUP_PATH.read_text(encoding="utf-8")
+            if content.strip():
+                data = json.loads(content)
+                if isinstance(data, list):
+                    return set(data)
+                if isinstance(data, dict):
+                    return set(data.get("fingerprints", []))
+    except Exception:
+        pass
+    return set()
+
+
+def _save_global_dedup(fingerprints: set):
+    """Persist the global fingerprint set."""
+    try:
+        _GLOBAL_DEDUP_PATH.parent.mkdir(parents=True, exist_ok=True)
+        _GLOBAL_DEDUP_PATH.write_text(
+            json.dumps(sorted(fingerprints), indent=2), encoding="utf-8"
+        )
+    except Exception as e:
+        print(f"  [warn] Could not save global dedup log: {e}")
+
+
+def _is_duplicate(story: dict, premise: str = None) -> bool:
+    """Return True if a story with identical content was already generated."""
+    return _fingerprint(story, premise) in _load_global_dedup()
+
+
+def _add_global_fingerprint(story: dict, premise: str = None):
+    """Record a story's fingerprint in the persistent global dedup store."""
+    fingerprints = _load_global_dedup()
+    fingerprints.add(_fingerprint(story, premise))
+    _save_global_dedup(fingerprints)
 
 
 def _log_generated_story(base_outdir: Path, story: dict, model_key: str, project_slug: str):
@@ -1004,6 +1063,37 @@ Default model: {llm_client.DEFAULT_MODEL_KEY}
                 failed += 1
                 continue
 
+            # Check global dedup — retry up to 3 times if the generated
+            # story is a duplicate of content already produced.
+            MAX_DEDUP_RETRIES = 3
+            dedup_pass = 0
+            while _is_duplicate(story, args.premise):
+                dedup_pass += 1
+                if dedup_pass > MAX_DEDUP_RETRIES:
+                    print(f"│  ⚠ Skipping: generated story is a duplicate after {MAX_DEDUP_RETRIES} retries")
+                    failed += 1
+                    story = None
+                    break
+                print(f"│  ↻ Duplicate detected, regenerating (attempt {dedup_pass + 1}/{MAX_DEDUP_RETRIES + 1})...")
+                try:
+                    story = generate_story(
+                        genre=args.genre,
+                        premise=args.premise,
+                        model_key=model_key,
+                    )
+                except Exception as e:
+                    last_error = e
+                    print(f"│  ⚠ Regeneration model {model_key} failed: {e}")
+                    story = None
+                    break
+
+            if story is None:
+                if dedup_pass > MAX_DEDUP_RETRIES:
+                    continue
+                print(f"│  ✗ FAILED (regeneration exhausted): {last_error}")
+                failed += 1
+                continue
+
             try:
                 project_dir, assets_got = save_project(
                     story=story,
@@ -1015,6 +1105,7 @@ Default model: {llm_client.DEFAULT_MODEL_KEY}
                 )
 
                 _log_generated_story(outdir, story, model_key, project_dir.name)
+                _add_global_fingerprint(story, args.premise)
                 completed += 1
                 total_assets_downloaded += assets_got
 
