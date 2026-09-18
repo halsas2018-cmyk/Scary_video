@@ -452,10 +452,11 @@ def _distribute_subshot_durations(plan: list[dict], timings: list[tuple],
                 if n_assets_in_sentence > 0:
                     # Each sub_shot gets an equal portion
                     shot_duration = sent_duration / n_assets_in_sentence
-                else:
-                    shot_duration = sent_duration
-
+                shot_start = timings[sent_idx][0] + position_in_sent * shot_duration
+                shot_end = shot_start + shot_duration
                 new_entry["duration_seconds"] = round(shot_duration, 3)
+                new_entry["start"] = round(shot_start, 3)
+                new_entry["end"] = round(shot_end, 3)
                 break
         else:
             # Asset not in any sentence - use a default

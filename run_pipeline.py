@@ -685,6 +685,21 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
                 shutil.copy(timestamps_path, public_assets_dir / "timestamps.json")
                 print(f"  ✓ staged timestamps.json")
 
+            # Copy timing.json (WhisperX-aligned sentence timestamps) to public/
+            timing_path = project_dir / "timing.json"
+            timing_list = []
+            if timing_path.exists():
+                shutil.copy(timing_path, public_assets_dir / "timing.json")
+                try:
+                    shutil.copy(timing_path, Path(__file__).parent / "public" / "timing.json")
+                except Exception:
+                    pass
+                print(f"  ✓ staged timing.json")
+                try:
+                    timing_list = json.loads(timing_path.read_text(encoding="utf-8"))
+                except Exception:
+                    pass
+
             # Load asset plan
             asset_plan_path = project_dir / "asset_plan.json"
             shots = []
@@ -751,14 +766,29 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
                     staged_rel_path = f"project_assets/{dest_name}"
                     print(f"  ✓ staged {dest_name}")
 
-                enriched_shots.append({
+                # Sentence timing from timing.json or shot
+                shot_timing = timing_list[idx] if idx < len(timing_list) else {}
+                start_sec = shot_timing.get("start", s.get("start"))
+                end_sec = shot_timing.get("end", s.get("end"))
+                if start_sec is not None and end_sec is not None:
+                    dur_sec = round(float(end_sec) - float(start_sec), 3)
+                else:
+                    dur_sec = float(s.get("duration_seconds", 3.0))
+
+                enriched_item = {
                     "sentence": s.get("sentence", ""),
                     "search_term": s.get("search_term", ""),
                     "media_type": s.get("media_type", "video"),
                     "visual": s.get("visual", ""),
                     "asset_path": staged_rel_path,
-                    "duration_seconds": s.get("duration_seconds", 3.0),
-                })
+                    "duration_seconds": dur_sec,
+                }
+                if start_sec is not None:
+                    enriched_item["start"] = float(start_sec)
+                if end_sec is not None:
+                    enriched_item["end"] = float(end_sec)
+
+                enriched_shots.append(enriched_item)
 
             words = []
             if timestamps_path.exists():
@@ -770,6 +800,7 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
             props = {
                 "shots": enriched_shots,
                 "words": words,
+                "timing": timing_list,
                 "narrationSrc": "project_assets/narration.mp3",
             }
 

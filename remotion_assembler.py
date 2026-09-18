@@ -33,6 +33,22 @@ def assemble_video_remotion(project_dir: Path) -> Path:
     if timestamps_path.exists():
         shutil.copy(timestamps_path, public_assets_dir / "timestamps.json")
 
+    # Copy timing.json (WhisperX-aligned sentence timestamps) to public/
+    timing_path = project_dir / "timing.json"
+    if timing_path.exists():
+        shutil.copy(timing_path, public_assets_dir / "timing.json")
+        try:
+            shutil.copy(timing_path, Path(__file__).parent / "public" / "timing.json")
+        except Exception:
+            pass
+
+    timing_list = []
+    if timing_path.exists():
+        try:
+            timing_list = json.loads(timing_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
     # Load asset plan. Different writers have used different top-level keys
     # over time ("head", "asset_plan", "per_sentence"); accept any of them so
     # a missing/renamed key never silently yields an empty shot list (which
@@ -104,14 +120,29 @@ def assemble_video_remotion(project_dir: Path) -> Path:
             shutil.copy(match_path, public_assets_dir / dest_name)
             staged_rel_path = f"project_assets/{dest_name}"
 
-        enriched_shots.append({
+        # Sentence timing from timing.json or shot
+        shot_timing = timing_list[idx] if idx < len(timing_list) else {}
+        start_sec = shot_timing.get("start", s.get("start"))
+        end_sec = shot_timing.get("end", s.get("end"))
+        if start_sec is not None and end_sec is not None:
+            dur_sec = round(float(end_sec) - float(start_sec), 3)
+        else:
+            dur_sec = float(s.get("duration_seconds", 3.0))
+
+        enriched_item = {
             "sentence": s.get("sentence", ""),
             "search_term": s.get("search_term", ""),
             "media_type": s.get("media_type", "video"),
             "visual": s.get("visual", ""),
             "asset_path": staged_rel_path,
-            "duration_seconds": s.get("duration_seconds", 3.0),
-        })
+            "duration_seconds": dur_sec,
+        }
+        if start_sec is not None:
+            enriched_item["start"] = float(start_sec)
+        if end_sec is not None:
+            enriched_item["end"] = float(end_sec)
+
+        enriched_shots.append(enriched_item)
 
     words = []
     if timestamps_path.exists():
@@ -123,6 +154,7 @@ def assemble_video_remotion(project_dir: Path) -> Path:
     props = {
         "shots": enriched_shots,
         "words": words,
+        "timing": timing_list,
         "narrationSrc": "project_assets/narration.mp3",
     }
 

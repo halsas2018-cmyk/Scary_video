@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   AbsoluteFill,
   Audio,
@@ -18,11 +18,20 @@ export interface ShotAsset {
   visual: string;
   asset_path?: string; // relative path under public/, e.g. "project_assets/shot_1.mp4"
   duration_seconds: number;
+  start?: number;
+  end?: number;
+  start_seconds?: number;
+  end_seconds?: number;
+  startSeconds?: number;
+  endSeconds?: number;
+  startFrame?: number;
+  endFrame?: number;
 }
 
 type Props = {
   shots: ShotAsset[];
   words: { word: string; start: number; end: number }[];
+  timing?: { start: number; end: number }[];
   narrationSrc: string;
 };
 
@@ -34,9 +43,21 @@ const loadStudioProps = async (): Promise<Props> => {
     const response = await fetch(staticFile("remotion_props.json"));
     if (response.ok) {
       const data = await response.json();
+      let timing = data.timing || [];
+      if (!timing || timing.length === 0) {
+        try {
+          const timingRes = await fetch(staticFile("timing.json"));
+          if (timingRes.ok) {
+            timing = await timingRes.json();
+          }
+        } catch {
+          // optional fallback
+        }
+      }
       return {
         shots: data.shots || [],
         words: data.words || [],
+        timing: timing,
         narrationSrc: data.narrationSrc || "project_assets/narration.mp3",
       };
     }
@@ -46,6 +67,7 @@ const loadStudioProps = async (): Promise<Props> => {
   return {
     shots: [],
     words: [],
+    timing: [],
     narrationSrc: "project_assets/narration.mp3",
   };
 };
@@ -58,21 +80,154 @@ const loadStudioProps = async (): Promise<Props> => {
 export type ShortsCompositionProps = {
   shots: ShotAsset[];
   words: { word: string; start: number; end: number }[];
+  timing?: { start: number; end: number }[];
   narrationSrc: string; // e.g. "project_assets/narration.mp3"
+};
+
+/**
+ * Clean a word for matching against Whisper word timestamps.
+ */
+const cleanWord = (w: string): string => {
+  return w.toLowerCase().replace(/[^a-z0-9]/g, "");
+};
+
+/**
+ * Derive sentence start and end times (in seconds) for each shot.
+ *
+ * 1. Uses explicit shot timing fields if present (start / end / start_seconds / etc.).
+ * 2. Uses timing array if provided (from timing.json WhisperX sentence timestamps).
+ * 3. Otherwise aligns shot sentences against Whisper word-level timestamps.
+ * 4. Fallback: cumulative active durations.
+ */
+export const calculateShotTimingRanges = (
+  shots: ShotAsset[],
+  words: { word: string; start: number; end: number }[] = [],
+  fps = 30,
+  timing: { start: number; end: number }[] = []
+): { startSec: number; endSec: number }[] => {
+  if (shots.length === 0) return [];
+
+  // 1. Check for explicit start on shots
+  const hasExplicitTiming = shots.every(
+    (s) =>
+      s.start !== undefined ||
+      s.start_seconds !== undefined ||
+      s.startSeconds !== undefined ||
+      s.startFrame !== undefined
+  );
+
+  if (hasExplicitTiming) {
+    return shots.map((s) => {
+      const startSec =
+        s.start ??
+        s.start_seconds ??
+        s.startSeconds ??
+        (s.startFrame !== undefined ? s.startFrame / fps : 0);
+      const endSec =
+        s.end ??
+        s.end_seconds ??
+        s.endSeconds ??
+        (s.endFrame !== undefined
+          ? s.endFrame / fps
+          : startSec + (s.duration_seconds || 3.0));
+      return { startSec, endSec };
+    });
+  }
+
+  // 2. Use timing array from timing.json if available and matching shot count
+  if (timing && timing.length === shots.length) {
+    return timing.map((t, idx) => {
+      const dur = shots[idx]?.duration_seconds || (t.end - t.start);
+      return {
+        startSec: t.start,
+        endSec: t.end ?? (t.start + dur),
+      };
+    });
+  }
+
+  // 3. Align shot sentences with word-level timestamps
+  if (words && words.length > 0) {
+    let wordIdx = 0;
+    let prevEndSec = 0;
+    const result: { startSec: number; endSec: number }[] = [];
+
+    for (let i = 0; i < shots.length; i++) {
+      const shot = shots[i];
+      const sentWords = (shot.sentence || "")
+        .split(/\s+/)
+        .map(cleanWord)
+        .filter(Boolean);
+
+      let shotStart: number | null = null;
+      let shotEnd: number | null = null;
+      let matched = 0;
+
+      while (wordIdx < words.length && matched < sentWords.length) {
+        const w = cleanWord(words[wordIdx].word);
+        const target = sentWords[matched];
+
+        if (!w) {
+          wordIdx++;
+          continue;
+        }
+
+        if (w === target || w.startsWith(target) || target.startsWith(w)) {
+          if (shotStart === null) shotStart = words[wordIdx].start;
+          shotEnd = words[wordIdx].end;
+          matched++;
+          wordIdx++;
+        } else {
+          const futureIdx = sentWords.slice(matched).indexOf(w);
+          if (futureIdx !== -1) {
+            matched += futureIdx;
+            if (shotStart === null) shotStart = words[wordIdx].start;
+            shotEnd = words[wordIdx].end;
+            matched++;
+            wordIdx++;
+          } else {
+            wordIdx++;
+          }
+        }
+      }
+
+      if (shotStart !== null && shotEnd !== null) {
+        result.push({ startSec: shotStart, endSec: shotEnd });
+        prevEndSec = shotEnd;
+      } else {
+        const dur = shot.duration_seconds || 3.0;
+        result.push({ startSec: prevEndSec, endSec: prevEndSec + dur });
+        prevEndSec += dur;
+      }
+    }
+
+    return result;
+  }
+
+  // 3. Fallback: cumulative durations
+  let cur = 0;
+  return shots.map((shot) => {
+    const dur = shot.duration_seconds || 3.0;
+    const startSec = cur;
+    const endSec = cur + dur;
+    cur += dur;
+    return { startSec, endSec };
+  });
 };
 
 export const ShortsComposition: React.FC<ShortsCompositionProps> = ({
   shots: initialShots,
   words: initialWords,
+  timing: initialTiming,
   narrationSrc: initialNarrationSrc,
 }) => {
   const [props, setProps] = useState<Props>({
     shots: initialShots || [],
     words: initialWords || [],
+    timing: initialTiming || [],
     narrationSrc: initialNarrationSrc || "project_assets/narration.mp3",
   });
 
-  const { fps } = useVideoConfig();
+  const { fps, durationInFrames: compositionDuration } = useVideoConfig();
 
   // Keep state synchronized if props change (e.g. passed from calculateMetadata or CLI)
   useEffect(() => {
@@ -80,6 +235,7 @@ export const ShortsComposition: React.FC<ShortsCompositionProps> = ({
       setProps({
         shots: initialShots,
         words: initialWords || [],
+        timing: initialTiming || [],
         narrationSrc: initialNarrationSrc || "project_assets/narration.mp3",
       });
       return;
@@ -90,11 +246,16 @@ export const ShortsComposition: React.FC<ShortsCompositionProps> = ({
         setProps(loaded);
       }
     });
-  }, [initialShots, initialWords, initialNarrationSrc]);
+  }, [initialShots, initialWords, initialTiming, initialNarrationSrc]);
 
   const shots = props.shots;
   const words = props.words;
+  const timing = props.timing;
   const narrationSrc = props.narrationSrc;
+
+  const timingRanges = useMemo(() => {
+    return calculateShotTimingRanges(shots, words, fps, timing);
+  }, [shots, words, fps, timing]);
 
   // OVERLAP_FRAMES: each shot's Sequence starts this many frames before the
   // previous one ends. This ensures the incoming OffthreadVideo has already
@@ -104,22 +265,57 @@ export const ShortsComposition: React.FC<ShortsCompositionProps> = ({
   // content timing is preserved; only the Sequence boundary shifts.
   const OVERLAP_FRAMES = 2;
 
-  let currentFrame = 0;
-  const sequencedShots = shots.map((shot, idx) => {
-    const durationInFrames = Math.max(30, Math.round((shot.duration_seconds || 3.0) * fps));
-    // All shots except the first start OVERLAP_FRAMES early to hide the
-    // OffthreadVideo decode gap at the transition point.
-    const start = idx === 0 ? currentFrame : currentFrame - OVERLAP_FRAMES;
-    currentFrame += durationInFrames;
-    return {
-      ...shot,
-      startFrame: start,
-      // Extend the Sequence duration to cover the overlap on both sides:
-      // +OVERLAP_FRAMES at the start (so it covers the incoming gap),
-      // and the last shot doesn't need the tail extension.
-      durationInFrames: durationInFrames + (idx === 0 ? 0 : OVERLAP_FRAMES),
-    };
-  });
+  // Shot placement follows actual sentence start/end timings, including inter-sentence pauses:
+  // - Shot 0 starts at frame 0 (avoiding any initial black gap before narration begins).
+  // - Shot i (i > 0) starts when sentence i begins (Math.round(startSec * fps)).
+  // - Shot i extends across the inter-sentence pause until shot i + 1 begins.
+  // - The final shot extends to the composition/narration end without black gaps.
+  const nominalCutFrames: number[] = useMemo(() => {
+    if (shots.length === 0) return [];
+    const cuts = shots.map((_, idx) => {
+      if (idx === 0) return 0;
+      return Math.round(timingRanges[idx].startSec * fps);
+    });
+    for (let i = 1; i < cuts.length; i++) {
+      if (cuts[i] <= cuts[i - 1]) {
+        cuts[i] = cuts[i - 1] + 1;
+      }
+    }
+    return cuts;
+  }, [shots, timingRanges, fps]);
+
+  const nominalEndFrames: number[] = useMemo(() => {
+    if (shots.length === 0) return [];
+    return shots.map((_, idx) => {
+      if (idx < shots.length - 1) {
+        return nominalCutFrames[idx + 1];
+      }
+      const lastSentenceEndFrame = Math.ceil(timingRanges[idx].endSec * fps);
+      return Math.max(
+        nominalCutFrames[idx] + 30,
+        compositionDuration || 0,
+        lastSentenceEndFrame
+      );
+    });
+  }, [shots, nominalCutFrames, timingRanges, compositionDuration, fps]);
+
+  const sequencedShots = useMemo(() => {
+    return shots.map((shot, idx) => {
+      const nominalStart = nominalCutFrames[idx];
+      const nominalEnd = nominalEndFrames[idx];
+
+      // All shots except the first start OVERLAP_FRAMES early to hide the
+      // OffthreadVideo decode gap at the transition point.
+      const startFrame = idx === 0 ? 0 : Math.max(0, nominalStart - OVERLAP_FRAMES);
+      const durationInFrames = Math.max(30, nominalEnd - startFrame);
+
+      return {
+        ...shot,
+        startFrame,
+        durationInFrames,
+      };
+    });
+  }, [shots, nominalCutFrames, nominalEndFrames]);
 
   const resolvedNarrationSrc = narrationSrc.startsWith("http")
     ? narrationSrc
@@ -234,7 +430,10 @@ export const ShortsCompositionMetadata: CalculateMetadataFunction<ShortsComposit
     }
   }
 
-  const totalFrames = (activeProps.shots || []).reduce((acc, shot) => {
+  const shots = activeProps.shots || [];
+  const words = activeProps.words || [];
+
+  const totalFrames = shots.reduce((acc, shot) => {
     return acc + Math.max(30, Math.round((shot.duration_seconds || 3.0) * fps));
   }, 0);
 
@@ -242,16 +441,24 @@ export const ShortsCompositionMetadata: CalculateMetadataFunction<ShortsComposit
   // WhisperX sentence timings include inter-sentence pauses/gaps. Extend the
   // composition to cover the full narration timeline using the last real
   // WhisperX word timestamp — never an invented value.
-  const words = activeProps.words || [];
   let minNarrationFrames = totalFrames;
   if (words.length > 0) {
     const lastWordEnd = words[words.length - 1].end;
     minNarrationFrames = Math.ceil(lastWordEnd * fps);
   }
 
+  let lastShotEndFrames = 0;
+  if (shots.length > 0) {
+    const timingRanges = calculateShotTimingRanges(shots, words, fps, activeProps.timing);
+    if (timingRanges.length > 0) {
+      const lastTiming = timingRanges[timingRanges.length - 1];
+      lastShotEndFrames = Math.ceil(lastTiming.endSec * fps);
+    }
+  }
+
   return {
     props: activeProps,
-    durationInFrames: Math.max(totalFrames, minNarrationFrames, 30),
+    durationInFrames: Math.max(totalFrames, minNarrationFrames, lastShotEndFrames, 30),
     fps,
   };
 };

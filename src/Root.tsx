@@ -23,6 +23,7 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{
           shots: [],
           words: [],
+          timing: [],
           narrationSrc: "project_assets/narration.mp3",
         }}
       />

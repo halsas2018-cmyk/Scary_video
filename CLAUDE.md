@@ -1,32 +1,46 @@
-# CLAUDE.md — YouTube Shorts AI Agent
+# CLAUDE.md — Scary Stories YouTube Shorts Pipeline
 
-Project guide for the automated, zero-cost pipeline turning trending tech/AI/business news into ready-to-edit YouTube Shorts (9:16, 1080×1920).
+Automated pipeline for generating high-retention scary stories (along with mystery, moral, and motivational tales) into ready-to-edit 9:16 YouTube Shorts (1080×1920).
 
-Adapted the pipeline from news Shorts to structured scary, mystery, moral, and motivational stories by connecting story generation, WhisperX sentence timing, visual planning, stock asset collection, and Remotion staging in `run_pipeline.py`.
+Connects story generation, high-speed Edge-TTS voiceover, WhisperX sentence-boundary timing, genre-aligned stock footage collection (Pexels/Pixabay), and Remotion video rendering.
 
 ---
 
 ## 1. Quick Start & Environment
 
 - **Runtime:** Python 3.13+ (always run scripts with `python3`, never bare `python`).
-- **Dependencies:** `python3 -m pip install --break-system-packages -r requirements.txt` (`requests`, `edge-tts`, `Pillow`, `trafilatura`, `readability-lxml`, `youtube-transcript-api`).
-- **System Tools:** `ffmpeg`, `ffprobe`, `curl`.
+- **Dependencies:** `python3 -m pip install --break-system-packages -r requirements.txt`
+- **System Tools:** `ffmpeg`, `ffprobe`, `curl`, `node` (v18+).
 - **Environment (`.env`):**
   ```env
-  GROQ_API_KEY="gsk-..."      # Script generation & Groq LLM calls
+  GEMINI_API_KEY="..."        # Default: Gemini 3.1 Flash Lite (story generation)
+  GROQ_API_KEY="gsk-..."      # Optional: Groq LLM alternative models
   PEXELS_API_KEY="qkn-..."    # Stock footage/photo downloads
+  PIXABAY_API_KEY="..."       # Stock fallback downloads
   NVIDIA_API_KEY="nvapi-..."  # Optional: NVIDIA NIM alternative models
   ```
 
-### Common Commands
+### Common Working Commands
 ```bash
-python3 run_pipeline.py --count 3 --outdir output      # Full run (default 3 stories)
-python3 run_pipeline.py --quick                       # 1 script only, no video
-python3 run_pipeline.py --count 1 --no-video          # Scripts + voice only
-python3 run_pipeline.py --auto --count 5              # Non-interactive (cron)
-python3 run_pipeline.py --model nvidia-nemotron-ultra # Use NVIDIA NIM
-python3 run_pipeline.py --rank-model nvidia-nemotron-ultra # Groq scripts + NVIDIA ranking
-python3 llm_client.py --bench                         # Benchmark all models
+# 1. Generate 1 scary story (stages assets for Remotion, default: gemini-31-flash-lite)
+python3 run_pipeline.py --count 1
+
+# 2. Custom scary premise / prompt
+python3 run_pipeline.py --premise "The basement mirror that reflects someone standing behind you"
+
+# 3. Quick script + voice only (no asset download)
+python3 run_pipeline.py --quick
+
+# 4. Full end-to-end video render with Remotion
+python3 run_pipeline.py --count 1 --render
+
+# 5. Check visual-to-sentence alignment (< 20ms verification)
+python3 check_sentence_alignment.py          # current staging
+python3 check_sentence_alignment.py --all    # all generated stories
+
+# 6. Preview in Remotion Studio or run tests
+npm start          # Remotion Studio
+npx vitest run     # Timeline and alignment unit tests
 ```
 
 ---
@@ -35,54 +49,42 @@ python3 llm_client.py --bench                         # Benchmark all models
 
 ```
 run_pipeline.py (Orchestrator)
-  ├─ 1. news_fetcher.rank_top_stories() → fetch RSS (blogs, CNBC, TechCrunch, Reddit, Google News) + HN + YouTube feeds, score & rank pool (40 candidates)
-  ├─ 2. Daily dedupe (output/<daily>/_generated_log.json)
-  ├─ 3. llm_ranker.rerank() → LLM editorial rerank (best-first shortlist + reasons + duplicates; falls back to heuristic on error)
-  ├─ 4. Interactive Picker (unless --auto) → user selects stories
-  └─ For each selected story:
-       ├─ article_fetcher.fetch_article_content() → scrape article/transcripts + comments (HN/Reddit fallback to RSS summary)
-       ├─ script_generator.generate_combined() → ONE LLM call: script (6-9 sentences, 110-150w), headline, youtube_title (≤60c), youtube_description (≤200c), shots[] plan
-       ├─ voice_generator.generate_narration() → narration.mp3 (edge-tts +20% rate)
-       ├─ storyboard_generator.generate_storyboard() → storyboard.md, captions.srt, asset_plan.json, timing.json
-       ├─ asset_collector.collect_assets_for_plan() → Pexels assets (one per sentence, video/photo, LLM tag verification, 2-use limit, max 15MB)
-       └─ video_assembler.assemble_video_simple() → draft_video.mp4 (ffmpeg, chronological clip-per-sentence, xfade 0.2s transitions, Ken-Burns zoompan on photos, 1000Hz sentence-boundary clicks, no burned captions)
+  ├─ 1. story_generator.generate_story() → LLM produces structured narration (default: scary)
+  ├─ 2. Global deduplication check (_is_duplicate against output/_global_dedup.json)
+  ├─ 3. voice_generator.generate_narration() → narration.mp3 (Edge-TTS)
+  ├─ 4. extract_word_timestamps.py → timestamps.json (WhisperX word timestamps)
+  ├─ 5. Sentence timing alignment (_sentence_timings_from_word_timestamps) → timing.json
+  ├─ 6. storyboard_generator.generate_storyboard() → genre-aware visual plan, search terms, captions.srt
+  ├─ 7. asset_collector.collect_assets_for_plan_with_fallback() → Pexels / Pixabay downloads with variety ordering
+  ├─ 8. remotion_assembler.py → stages project_assets/, writes remotion_props.json with timing.json bounds
+  ├─ 9. Remotion Render (ShortsComposition) → draft_video.mp4 with frame-accurate cuts & dark cinematic treatment
+  └─ 10. check_sentence_alignment.py → validates 1:1 sentence-to-visual mapping & zero black gaps
 ```
 
 ---
 
 ## 3. Core Modules & Contracts
 
-- **`run_pipeline.py`**: Orchestrates story generation, voice synthesis, WhisperX word timestamps, sentence timing alignment, visual planning, Pexels asset collection, and Remotion staging/render. Strictly enforces the story contract at entry to `save_project`.
+- **`run_pipeline.py`**: Orchestrates story generation, voice synthesis, WhisperX word timestamps, sentence timing alignment, visual planning, asset collection, and Remotion staging/render.
 - **`story_generator.py`**: Generates structured stories enforcing the pipeline story contract:
-  - **Input Contract**:
-    - `genre` (`str`, required): Exactly one of `"scary" | "mystery" | "moral" | "motivational"`.
-    - `premise` (`str | None`, optional): Story prompt or premise hook.
-    - `model_key` (`str`, optional): LLM model key.
-  - **Output Contract**:
-    - JSON-compatible dictionary exactly containing:
-      - `"title": str` (non-empty story title)
-      - `"genre": str` (one of `"scary"`, `"mystery"`, `"moral"`, `"motivational"`)
-      - `"sentences": list[str]` (authoritative spoken narration in sequential order)
-    - **Narration Purity**: No visual directions, camera directions, timestamps, sound effects, speaker labels, or other metadata.
-    - **Flexible Sentence & Word Counts**: Sentence count and per-sentence word counts are flexible and not artificially constrained, because the exact sentences are passed unchanged to Edge TTS and subsequently matched against WhisperX word timestamps.
-- **`llm_client.py`**: Provider-agnostic LLM transport for Groq and NVIDIA NIM (`call_llm` via curl, MODEL_REGISTRY, error guards, token/time scaling, `--bench`).
-- **`news_fetcher.py`**: Discovers stories from RSS, HN, Google News, and YouTube channel feeds; computes recency + niche + engagement score.
-- **`llm_ranker.py`**: Precision editorial reranker over candidate pool. Outputs best-first order with reasons.
-- **`article_fetcher.py`**: Extracts article text (trafilatura → readability → stdlib) and top comments. Routes YouTube URLs to `youtube-transcript-api`.
-- **`script_generator.py`**: Combined LLM call producing script, metadata, and per-sentence visual plan with strict validation.
-- **`voice_generator.py`**: Generates high-speed Microsoft Edge TTS narration (`en-US-AndrewNeural`).
-- **`storyboard_generator.py`**: Formats the combined LLM shot plan into SRT, timing files, and storyboard markdown without extra LLM calls. Genre-aware: `genre` parameter is passed through to `generate_visual_plan()` and embedded in the LLM planner prompt, plus genre-specific fallback search terms for scary/mystery/moral/motivational.
-- **`asset_collector.py`**: Downloads Pexels/Pixabay videos/photos with caching and visual-variety reordering. `_enforce_shot_variety()` tags each plan item with `_orig_index` so reordering preserves the original sentence-position mapping — `assets_manifest.json` is always keyed by original asset index regardless of variety reordering.
-- **`video_assembler.py`**: FFmpeg assembly pipeline enforcing hard max durations (3.0s video, 1.5s photo), xfade transitions, audio padding, and subtle transition clicks.
+  - **Genre**: Defaults to `"scary"` (supports `"mystery"`, `"moral"`, `"motivational"`).
+  - **Contract**: JSON dictionary with `"title"`, `"genre"`, and `"sentences"` (authoritative spoken narration in sequential order, free of camera directions or meta-text).
+- **`voice_generator.py`**: High-speed Microsoft Edge TTS narration (`en-US-AndrewNeural`, +20% rate).
+- **`extract_word_timestamps.py`**: Runs WhisperX alignment on `narration.mp3` to extract word-level timestamps (`timestamps.json`).
+- **`storyboard_generator.py`**: Formats visual plan and search terms tailored to the story mood (dark/eerie for scary), writing `timing.json`, `asset_plan.json`, and `storyboard.md`.
+- **`asset_collector.py`**: Downloads stock videos/photos with variety reordering (`_orig_index` preserves sentence order in `assets_manifest.json`).
+- **`remotion_assembler.py`**: Stages audio and media to `public/project_assets/`, populates `remotion_props.json` with `timing.json` sentence bounds, and executes Remotion render.
+- **`check_sentence_alignment.py`**: Fast verification tool ensuring 100% frame synchronization between WhisperX speech timestamps and Remotion visual cuts.
+- **`src/ShortsComposition.tsx`**: Remotion composition applying sentence-based visual cuts, dark cinematic grading (vignette, film grain, subtle desaturation), and synchronized TikTok captions.
 
 ---
 
 ## 4. Key Gotchas & Troubleshooting
 
-1. **API Keys:** Check `GROQ_API_KEY` and `PEXELS_API_KEY` in `.env`.
-2. **Groq TPM Limits:** Full rerank can hit Groq's 8k TPM limit; use `--rank-model nvidia-nemotron-ultra` to offload ranking.
-3. **Execution:** Always use `python3`, never `python`.
-4. **Module Tests:** Each module has a `if __name__ == "__main__"` smoke test (e.g., `python3 llm_client.py --list`).
+1. **API Keys:** Check `GEMINI_API_KEY` (or `GROQ_API_KEY`) and `PEXELS_API_KEY` in `.env`.
+2. **Execution:** Always use `python3`, never bare `python`.
+3. **Alignment Verification:** Always run `python3 check_sentence_alignment.py` to confirm visual cuts match narration speech.
+4. **Remotion Rendering:** Use `--render` flag on `run_pipeline.py` to produce final MP4; without `--render`, it stages assets for Studio inspection.
 
 ## 5. Sentence Timing Alignment (Two-Phase)
 
@@ -148,3 +150,10 @@ The old dedup system had two bugs: `_fingerprint()` only hashed the story title 
 - **Daily log preserved**: The existing daily `_generated_log.json` is kept for date-based history; it now uses the same content-based fingerprint as its key.
 
 **Validated**: Tested that the same story content with a different title produces an identical fingerprint (detected as duplicate), while genuinely different stories produce distinct fingerprints (accepted). Premise is included in the fingerprint. The global dedup file persists to disk.
+
+## 10. Sentence-to-Visual Mapping (`timing.json`)
+
+- **Alignment**: WhisperX sentence boundaries from `timing.json` are attached directly as `start`/`end` on each shot in `remotion_props.json` and staged to `public/timing.json`.
+- **Remotion**: `ShortsComposition.tsx` prioritizes explicit shot timings and `props.timing`, cutting visuals exactly on sentence boundaries (0.0ms drift) with inter-sentence pause bridging.
+- **Verification**: Run `python3 check_sentence_alignment.py` (or `--all`) to verify 1:1 visual mapping, frame sync (≤1 frame delta), and zero black gaps in <20ms.
+
