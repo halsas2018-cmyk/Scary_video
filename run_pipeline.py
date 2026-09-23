@@ -89,10 +89,11 @@ def slugify(text: str, max_len: int = 50) -> str:
     return slug[:max_len] or "untitle"
 
 
-def _get_daily_outdir(base_outdir: Path) -> Path:
-    """Get the daily output directory (e.g., output/09_08_short_vids)."""
+def _get_daily_outdir(base_outdir: Path, length_mode: str = "short") -> Path:
+    """Get the daily output directory (e.g., output/09_08_short_vids or output/09_08_long_vids)."""
     today = date.today()
-    daily_dir_name = f"{today.day:02d}_{today.month:02d}_short_vids"
+    suffix = "_long_vids" if length_mode == "long" else "_short_vids"
+    daily_dir_name = f"{today.day:02d}_{today.month:02d}{suffix}"
     daily_dir = base_outdir / daily_dir_name
     daily_dir.mkdir(parents=True, exist_ok=True)
     return daily_dir
@@ -102,15 +103,15 @@ def _get_daily_outdir(base_outdir: Path) -> Path:
 # Daily dedupe log (output/09_08_short_vids/_generated_log.json)
 # ---------------------------------------------------------------------------
 
-def _get_dedupe_log_path(base_outdir: Path) -> Path:
+def _get_dedupe_log_path(base_outdir: Path, length_mode: str = "short") -> Path:
     """Get the daily dedupe log path inside the daily output directory."""
-    daily_dir = _get_daily_outdir(base_outdir)
+    daily_dir = _get_daily_outdir(base_outdir, length_mode=length_mode)
     return daily_dir / "_generated_log.json"
 
 
-def _load_dedupe_log(base_outdir: Path) -> list[dict]:
+def _load_dedupe_log(base_outdir: Path, length_mode: str = "short") -> list[dict]:
     """Load the daily dedupe log, return empty list on any error."""
-    log_path = _get_dedupe_log_path(base_outdir)
+    log_path = _get_dedupe_log_path(base_outdir, length_mode=length_mode)
     try:
         if log_path.exists():
             content = log_path.read_text(encoding="utf-8")
@@ -121,9 +122,9 @@ def _load_dedupe_log(base_outdir: Path) -> list[dict]:
     return []
 
 
-def _save_dedupe_log(base_outdir: Path, entries: list[dict]):
+def _save_dedupe_log(base_outdir: Path, entries: list[dict], length_mode: str = "short"):
     """Save the dedupe log, trimming to last ~30 days."""
-    log_path = _get_dedupe_log_path(base_outdir)
+    log_path = _get_dedupe_log_path(base_outdir, length_mode=length_mode)
     try:
         today = date.today().isoformat()
         cutoff = date.fromisoformat(today)
@@ -203,9 +204,10 @@ def _add_global_fingerprint(story: dict, premise: str = None):
     _save_global_dedup(fingerprints)
 
 
-def _log_generated_story(base_outdir: Path, story: dict, model_key: str, project_slug: str):
+def _log_generated_story(base_outdir: Path, story: dict, model_key: str,
+                         project_slug: str, length_mode: str = "short"):
     """Append a successful generation to the daily dedupe log."""
-    log = _load_dedupe_log(base_outdir)
+    log = _load_dedupe_log(base_outdir, length_mode=length_mode)
     today = date.today().isoformat()
     log.append({
         "date": today,
@@ -215,7 +217,7 @@ def _log_generated_story(base_outdir: Path, story: dict, model_key: str, project
         "model": model_key,
         "project": project_slug,
     })
-    _save_dedupe_log(base_outdir, log)
+    _save_dedupe_log(base_outdir, log, length_mode=length_mode)
 
 
 def _audio_duration(path: Path) -> float:
@@ -476,7 +478,8 @@ def check_prerequisites(model_key: str = llm_client.DEFAULT_MODEL_KEY):
 
 
 def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
-                 model_key: str = llm_client.DEFAULT_MODEL_KEY, render: bool = False):
+                 model_key: str = llm_client.DEFAULT_MODEL_KEY, render: bool = False,
+                 length_mode: str = "short"):
     """
     Save all project files for one Story Short.
 
@@ -508,7 +511,7 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
     script = __sentences_joined(sentences)
     word_count = len(script.split())
 
-    daily_dir = _get_daily_outdir(outdir)
+    daily_dir = _get_daily_outdir(outdir, length_mode=length_mode)
     today = date.today()
     date_str = f"{today.month:02d}_{today.day:02d}"
     model_slug = slugify(model_key.replace(".", "-"))
@@ -562,7 +565,7 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
     narration_path = project_dir / "narration.mp3"
     print(f"  ─ Voice generation...")
     try:
-        generate_narration(script, project_dir=project_dir)
+        generate_narration(script, project_dir=project_dir, length_mode=length_mode)
         print(f"  ✓ narration.mp3")
     except Exception as e:
         print(f"  ✗ narration.mp3 FAILED: {e}")
@@ -634,7 +637,7 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
 
     # --- Edit plan ---
     try:
-        edit_plan = _generate_edit_plan(story, script, sb_result)
+        edit_plan = _generate_edit_plan(story, script, sb_result, length_mode=length_mode)
         (project_dir / "edit_plan.json").write_text(
             json.dumps(edit_plan, indent=2), encoding="utf-8"
         )
@@ -648,7 +651,7 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
     if asset_plan:
         print(f"  ─ Downloading {len(asset_plan)} per-sentence asset(s) from Pexels (Pixabay fallback)...")
         try:
-            asset_result = collect_assets_for_plan_with_fallback(asset_plan, project_dir)
+            asset_result = collect_assets_for_plan_with_fallback(asset_plan, project_dir, length_mode=length_mode)
             assets_downloaded = len(asset_result)
         except Exception as e:
             print(f"  ✗ Asset download FAILED: {e}")
@@ -657,7 +660,7 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
         if keywords:
             print(f"  ─ Downloading stock footage from Pexels (legacy)...")
             try:
-                collect_assets(keywords, project_dir)
+                collect_assets(keywords, project_dir, length_mode=length_mode)
             except Exception as e:
                 print(f"  ✗ Asset download FAILED: {e}")
         else:
@@ -827,7 +830,12 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
     if render and not no_video and narration_path.exists():
         try:
             print(f"  ─ Rendering video with Remotion...")
-            output_video = assemble_video_remotion(project_dir)
+            if length_mode == "long":
+                output_video = assemble_video_remotion(
+                    project_dir, composition_name="LongFormComposition"
+                )
+            else:
+                output_video = assemble_video_remotion(project_dir)
             print(f"  ✓ Rendered: {output_video.name}")
         except Exception as rend_err:
             print(f"  ⚠ Remotion render FAILED: {rend_err}")
@@ -863,16 +871,28 @@ def _generate_thumbnail_notes(story: dict) -> str:
     return "\n".join(lines)
 
 
-def _generate_edit_plan(story: dict, script: str, sb_result: dict) -> dict:
-    """Generate editing instructions JSON."""
+def _generate_edit_plan(story: dict, script: str, sb_result: dict,
+                        length_mode: str = "short") -> dict:
+    """Generate editing instructions JSON.
+
+    length_mode is accepted for forward-compatibility with long-form mode,
+    but the edit plan format/resolution values are NOT yet mode-aware.
+    """
     shots = sb_result.get("shots", []) if sb_result else []
     word_count = len(script.split())
     estimated_duration = max(20, word_count / 2.8)
 
+    if length_mode == "long":
+        fmt = "YouTube Long Form (16:9, 1920x1080)"
+        resolution = "1920x1080"
+    else:
+        fmt = "YouTube Shorts (9:16, 1080x1920)"
+        resolution = "1080x1920"
+
     return {
         "project_title": story["title"],
         "genre": story["genre"],
-        "format": "YouTube Shorts (9:16, 1080x1920)",
+        "format": fmt,
         "estimated_duration_seconds": round(estimated_duration, 1),
         "narration_file": "narration.mp3",
         "voice": "en-US-AndrewNeural (+20% rate)",
@@ -896,7 +916,7 @@ def _generate_edit_plan(story: dict, script: str, sb_result: dict) -> dict:
         ],
         "bgm_recommendation": _suggest_bgm(script, story["title"], story["genre"]),
         "export_settings": {
-            "resolution": "1080x1920",
+            "resolution": resolution,
             "fps": 30,
             "codec": "H.264",
             "bitrate": "8 Mbps",
@@ -1007,6 +1027,14 @@ Default model: {llm_client.DEFAULT_MODEL_KEY}
         "--auto", action="store_true",
         help="Auto mode (non-interactive, retained for compatibility)"
     )
+    parser.add_argument(
+        "--mode", type=str, default="short",
+        choices=["short", "long"],
+        help="Output mode: 'short' (9:16 Shorts, ~170-400 words, RATE=+20%%) "
+             "or 'long' (16:9, ~1,000-2,000 words, RATE=+10%%). "
+             "Default: short. Controls story generation and TTS rate; "
+             "Remotion composition and dimensions are not yet mode-aware."
+    )
 
     args = parser.parse_args()
 
@@ -1047,8 +1075,9 @@ Default model: {llm_client.DEFAULT_MODEL_KEY}
     print("╔══════════════════════════════════════════════════════╗")
     print("║   Story Shorts AI Agent — Story Pipeline             ║")
     print("╠══════════════════════════════════════════════════════╣")
-    print(f"║  Target: {args.count} Story Short{'s' if args.count > 1 else ''}{' (scripts only)' if args.no_video else ''}      ║")
-    print(f"║  Genre:  {args.genre:<46} ║")
+    mode_label = "Short (9:16)" if args.mode == "short" else "Long (16:9)"
+    print(f"║  Target: {args.count} Story{' Short' if args.mode == 'short' else ' Long'}{'s' if args.count > 1 else ''}{' (scripts only)' if args.no_video else ''}           ║")
+    print(f"║  Mode:   {mode_label:<46} ║")
     print(f"║  Model:  {args.model:<46} ║")
     print(f"║  Output: {str(outdir.resolve()):<46} ║")
     print("╚══════════════════════════════════════════════════════╝")
@@ -1080,6 +1109,7 @@ Default model: {llm_client.DEFAULT_MODEL_KEY}
                         genre=args.genre,
                         premise=args.premise,
                         model_key=try_model,
+                        length_mode=args.mode,
                     )
                     if try_model != model_key:
                         print(f"│  ↻ Fell back to {try_model} after {model_key} failed")
@@ -1111,6 +1141,7 @@ Default model: {llm_client.DEFAULT_MODEL_KEY}
                         genre=args.genre,
                         premise=args.premise,
                         model_key=model_key,
+                        length_mode=args.mode,
                     )
                 except Exception as e:
                     last_error = e
@@ -1131,11 +1162,12 @@ Default model: {llm_client.DEFAULT_MODEL_KEY}
                     outdir=outdir,
                     index=i,
                     no_video=args.no_video,
-                    model_key=model_key,
+                    model_key=try_model,
                     render=args.render,
+                    length_mode=args.mode,
                 )
 
-                _log_generated_story(outdir, story, model_key, project_dir.name)
+                _log_generated_story(outdir, story, model_key, project_dir.name, length_mode=args.mode)
                 _add_global_fingerprint(story, args.premise)
                 completed += 1
                 total_assets_downloaded += assets_got
@@ -1149,7 +1181,7 @@ Default model: {llm_client.DEFAULT_MODEL_KEY}
 
     # --- Summary ---
     print()
-    daily_dir = _get_daily_outdir(outdir)
+    daily_dir = _get_daily_outdir(outdir, length_mode=args.mode)
     print("╔══════════════════════════════════════════════════════╗")
     print(f"║  Done: {completed} successful, {failed} failed                   ║")
     print(f"║  Output: {str(daily_dir.resolve()):<46} ║")

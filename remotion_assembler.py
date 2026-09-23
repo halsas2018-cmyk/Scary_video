@@ -10,7 +10,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-def assemble_video_remotion(project_dir: Path) -> Path:
+def assemble_video_remotion(project_dir: Path, composition_name: str = "ShortsComposition") -> Path:
     project_dir = Path(project_dir)
     narration_path = project_dir / "narration.mp3"
     timestamps_path = project_dir / "timestamps.json"
@@ -177,7 +177,7 @@ def assemble_video_remotion(project_dir: Path) -> Path:
     # requested range exceed the computed duration and aborts the render.
     cmd = [
         "npx", "remotion", "render",
-        "ShortsComposition",
+        composition_name,
         str(output_video.absolute()),
         f"--props={str(props_json_path.absolute())}",
     ]

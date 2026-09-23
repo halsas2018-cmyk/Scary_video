@@ -28,7 +28,7 @@ try:
     import llm_client
     def _call_groq(messages, model_key=None, temperature=0.4):
         key = model_key or llm_client.DEFAULT_MODEL_KEY
-        return llm_client.call_llm(messages, model_key=key, temperature=temperature, max_tokens=2048)
+        return llm_client.call_llm(messages, model_key=key, temperature=temperature, max_tokens=18192)
 except Exception:  # pragma: no cover - import-only safety net
     _call_groq = None
 

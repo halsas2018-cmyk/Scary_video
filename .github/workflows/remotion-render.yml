@@ -2,6 +2,15 @@ name: Render Remotion Video
 
 on:
   workflow_dispatch:
+    inputs:
+      composition:
+        description: 'Composition to render'
+        required: false
+        default: 'ShortsComposition'
+        type: choice
+        options:
+          - ShortsComposition
+          - LongFormComposition
 
 jobs:
   render:
@@ -22,12 +31,12 @@ jobs:
 
       - name: Render Remotion video
         run: |
-          npx remotion render ShortsComposition \
+          npx remotion render "${{ inputs.composition }}" \
             --props=public/remotion_props.json \
             --output=output/remotion-render.mp4
 
       - name: Upload rendered video
         uses: actions/upload-artifact@v4
         with:
-          name: remotion-video
+          name: remotion-video-${{ inputs.composition }}
           path: output/remotion-render.mp4

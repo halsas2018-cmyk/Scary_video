@@ -215,7 +215,7 @@ def _add_to_cache(keyword: str, clip_path: Path, clip_id: int, cache: dict):
 # ---------------------------------------------------------------------------
 
 def collect_assets(keywords: list[str], project_dir: Path,
-                   max_clips: int = None) -> list[Path]:
+                   max_clips: int = None, length_mode: str = "short") -> list[Path]:
     """
     Collect background video clips for a Short.
 
@@ -269,7 +269,7 @@ def collect_assets(keywords: list[str], project_dir: Path,
             return ("cached", dest, query)
 
         # Step 2: Not in cache — search Pexels
-        clips = _search_pexels(query, api_key)
+        clips = _search_pexels(query, api_key, length_mode=length_mode)
         for clip in clips:
             try:
                 path = _download(clip, query, assets_dir)
@@ -300,7 +300,8 @@ def collect_assets(keywords: list[str], project_dir: Path,
     return downloaded_paths
 
 
-def collect_assets_for_plan(plan: list[dict], project_dir: Path, force_fresh: bool = False) -> dict:
+def collect_assets_for_plan(plan: list[dict], project_dir: Path, force_fresh: bool = False,
+                            length_mode: str = "short") -> dict:
     """Download ONE asset per entry in plan (each entry is a sub_shot), keyed by original index.
 
     The primary entry for the new per-sentence assembler. `plan` is the
@@ -370,9 +371,9 @@ def collect_assets_for_plan(plan: list[dict], project_dir: Path, force_fresh: bo
 
         # Search + download per media type.
         if media == "photo":
-            clips = _search_pexels_photo(query, api_key)
+            clips = _search_pexels_photo(query, api_key, length_mode=length_mode)
         else:
-            clips = _search_pexels(query, api_key)
+            clips = _search_pexels(query, api_key, length_mode=length_mode)
 
         got = None
         for clip in clips:
@@ -404,15 +405,16 @@ def collect_assets_for_plan(plan: list[dict], project_dir: Path, force_fresh: bo
     return result
 
 
-def _search_pexels_photo(query: str, api_key: str) -> list[dict]:
-    """Search the Pexels PHOTOS API. Returns portrait candidates.
+def _search_pexels_photo(query: str, api_key: str, length_mode: str = "short") -> list[dict]:
+    """Search the Pexels PHOTOS API. Returns portrait (Shorts) or landscape (Long) candidates.
 
     Uses the per-photo `src.portrait` URL (Pexels pre-crops to a fixed ~1300px
     portrait) — that's already small, and the download byte-cap is the real
     backstop. No dimension filter on the full-res original.
     """
+    orientation = "landscape" if length_mode == "long" else "portrait"
     url = (f"{PEXELS_PHOTO_API}?query={urllib.parse.quote(query)}"
-           f"&per_page=5&orientation=portrait&size=small")
+           f"&per_page=5&orientation={orientation}&size=small")
     req = urllib.request.Request(
         url,
         headers={"Authorization": api_key, "User-Agent": PEXELS_USER_AGENT},
@@ -507,17 +509,18 @@ def _prioritize_keywords(keywords: list[str]) -> list[str]:
     return ordered
 
 
-def _search_pexels(query: str, api_key: str) -> list[dict]:
-    """Search Pexels for free stock video clips (portrait, data-conscious).
+def _search_pexels(query: str, api_key: str, length_mode: str = "short") -> list[dict]:
+    """Search Pexels for free stock video clips (portrait for Shorts, landscape for Long).
 
-    Picks the SMALLEST usable portrait file per video (≥ MIN_CLIP_WIDTH) so
+    Picks the SMALLEST usable file per video (≥ MIN_CLIP_WIDTH) so
     fresh downloads stay small. A 20-30s Short with a blurred/scaled background
     does not need a 12 MB 1080p source — a ~1-5 MB 540p-720p clip is plenty.
     """
     # size=small biases Pexels toward smaller source clips (vs the old
     # size=large which favored heavyweight files).
+    orientation = "landscape" if length_mode == "long" else "portrait"
     url = (f"{PEXELS_VIDEO_API}?query={urllib.parse.quote(query)}"
-           f"&per_page=5&orientation=portrait&size=small")
+           f"&per_page=5&orientation={orientation}&size=small")
     # Browser UA is required — Cloudflare 403s (error 1010) the default
     # urllib/python User-Agent, which silently killed asset downloads.
     req = urllib.request.Request(
@@ -551,7 +554,7 @@ def _search_pexels(query: str, api_key: str) -> list[dict]:
         for file in video.get("video_files", []):
             w, h = file.get("width", 0), file.get("height", 0)
             duration = video.get("duration", 10)
-            if h > w and w >= MIN_CLIP_WIDTH:  # portrait + big enough to scale
+            if (w > h if length_mode == "long" else h > w) and w >= MIN_CLIP_WIDTH:  # landscape(Long) / portrait(Short) + big enough
                 usable.append({
                     "url": file["link"],
                     "width": w,
@@ -647,7 +650,8 @@ def _get_pixabay_key() -> str:
     return key
 
 
-def _search_pixabay(query: str, api_key: str, media_type: str = "video") -> list[dict]:
+def _search_pixabay(query: str, api_key: str, media_type: str = "video",
+                    length_mode: str = "short") -> list[dict]:
     """Search Pixabay for free stock videos/photos.
 
     Pixabay has a generous free tier (no auth required for basic use,
@@ -658,8 +662,9 @@ def _search_pixabay(query: str, api_key: str, media_type: str = "video") -> list
         url = (f"{PIXABAY_VIDEO_API}?key={api_key}&q={urllib.parse.quote(query)}"
                f"&per_page={per_page}&video_type=all")
     else:
+        orientation = "horizontal" if length_mode == "long" else "vertical"
         url = (f"{PIXABAY_API}?key={api_key}&q={urllib.parse.quote(query)}"
-               f"&per_page={per_page}&orientation=vertical&image_type=photo")
+               f"&per_page={per_page}&orientation={orientation}&image_type=photo")
 
     req = urllib.request.Request(
         url,
@@ -693,7 +698,7 @@ def _search_pixabay(query: str, api_key: str, media_type: str = "video") -> list
                 if quality in videos:
                     v = videos[quality]
                     w, h = v.get("width", 0), v.get("height", 0)
-                    if h > w and w >= MIN_CLIP_WIDTH:
+                    if (w > h if length_mode == "long" else h > w) and w >= MIN_CLIP_WIDTH:
                         usable.append({
                             "url": v["url"],
                             "width": w,
@@ -766,7 +771,8 @@ def _download_pixabay(clip: dict, query: str, assets_dir: Path, is_video: bool =
     return None
 
 
-def collect_assets_for_plan_with_fallback(plan: list[dict], project_dir: Path, force_fresh: bool = False) -> dict:
+def collect_assets_for_plan_with_fallback(plan: list[dict], project_dir: Path, force_fresh: bool = False,
+                                          length_mode: str = "short") -> dict:
     """Download assets with Pexels first, then Pixabay fallback.
 
     Tries Pexels for each sentence. If Pexels fails or returns no results,
@@ -783,7 +789,8 @@ def collect_assets_for_plan_with_fallback(plan: list[dict], project_dir: Path, f
         regardless of variety reordering.
     """
     # First try Pexels (includes shot variety enforcement)
-    result = collect_assets_for_plan(plan, project_dir, force_fresh=force_fresh)
+    result = collect_assets_for_plan(plan, project_dir, force_fresh=force_fresh,
+                                     length_mode=length_mode)
 
     # Check which original indices are missing
     missing_indices = [i for i in range(len(plan)) if i not in result]
@@ -812,7 +819,8 @@ def collect_assets_for_plan_with_fallback(plan: list[dict], project_dir: Path, f
             continue
 
         is_video = (media == "video")
-        clips = _search_pixabay(query, pixabay_key, "video" if is_video else "photo")
+        clips = _search_pixabay(query, pixabay_key, "video" if is_video else "photo",
+                                length_mode=length_mode)
 
         for clip in clips:
             path = _download_pixabay(clip, query, project_dir / "assets", is_video)

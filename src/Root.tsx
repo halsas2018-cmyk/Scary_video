@@ -1,6 +1,7 @@
 import React from "react";
 import { Composition } from "remotion";
 import { ShortsComposition, ShortsCompositionMetadata } from "./ShortsComposition";
+import { LongFormComposition, LongFormCompositionMetadata } from "./LongFormComposition";
 
 /**
  * Root component for the Remotion video pipeline.
@@ -11,7 +12,7 @@ import { ShortsComposition, ShortsCompositionMetadata } from "./ShortsCompositio
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      {/* Main Shorts Composition */}
+      {/* Main Shorts Composition — 9:16 vertical video */}
       <Composition
         id="ShortsComposition"
         component={ShortsComposition}
@@ -27,8 +28,26 @@ export const RemotionRoot: React.FC = () => {
           narrationSrc: "project_assets/narration.mp3",
         }}
       />
+
+      {/* Long-form Composition — 16:9 landscape video */}
+      <Composition
+        id="LongFormComposition"
+        component={LongFormComposition}
+        durationInFrames={5400}
+        fps={30}
+        width={1920}
+        height={1080}
+        calculateMetadata={LongFormCompositionMetadata}
+        defaultProps={{
+          shots: [],
+          words: [],
+          timing: [],
+          narrationSrc: "project_assets/narration.mp3",
+        }}
+      />
     </>
   );
 };
 
 export { ShortsComposition, ShortsCompositionMetadata };
+export { LongFormComposition, LongFormCompositionMetadata };

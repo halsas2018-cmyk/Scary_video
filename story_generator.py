@@ -1,4 +1,4 @@
-"""Generate structured short stories for the scary-stories video pipeline.
+"""Generate structured stories for the scary-stories video pipeline.
 
 Story Input/Output Contract:
 ----------------------------
@@ -6,6 +6,8 @@ Input:
 - genre (required, str): Exactly one of "scary", "mystery", "moral", "motivational".
 - premise (optional, str | None): Story premise, theme, or prompt hook.
 - model_key (optional, str): Model key configured in llm_client.
+- length_mode (optional, str): "short" (default, ~170-400 words) or "long"
+  (~1,000-2,000 words with deeper narrative structure).
 
 Output:
 - JSON-compatible dict exactly containing:
@@ -28,9 +30,11 @@ import re
 import llm_client
 
 
-DEFAULT_MAX_TOKENS = 4096
+DEFAULT_MAX_TOKENS = 6096
+DEFAULT_MAX_TOKENS_LONG = 15288
 
 ALLOWED_GENRES = ("scary", "mystery", "moral", "motivational")
+ALLOWED_LENGTH_MODES = ("short", "long")
 REQUIRED_STORY_KEYS = {"title", "genre", "sentences"}
 
 METADATA_PATTERNS = [
@@ -187,6 +191,76 @@ system will later match each sentence to its real WhisperX timing.
 """
 
 
+STORY_SYSTEM_PROMPT_LONG = """You write original, engaging, and coherent long-form stories for narrated video content.
+
+Your stories sustain attention over a longer arc, unfold across multiple beats,
+and deliver a payoff that feels earned rather than sudden. You must produce at
+least 1,000 words across 60-150 natural sentences — enough length for layered
+character development, sustained tension, and a narrative that can breathe. It
+is better to exceed this floor than to fall short. Do not be sparing with detail;
+long-form narration rewards expansive, descriptive prose.
+
+LONG-FORM NARRATIVE STRUCTURE:
+- **Three to four acts with clear turning points**: Open with a strong hook,
+  introduce the ordinary world, disrupt it with the inciting incident, escalate
+  through rising complications across several scenes, reach a climax or revelation,
+  then resolve with a payoff that recontextualizes what came before. Let each act
+  feel like its own natural paragraph of narration with internal momentum.
+- **Character depth**: Let characters have clear motivations, flaws, and an arc
+  of change. The narrator's perspective should evolve as understanding deepens.
+  Include at least one moment of quiet character reflection or world-building
+  detail that reveals something about them beyond the plot.
+- **Scene-rich escalation**: Do not skip between beats too quickly. Within each
+  rising complication, set the scene with concrete sensory detail — what is seen,
+  heard, smelled, touched — so the listener can inhabit the moment rather than
+  being told a summary. Each scene should have at least 5-8 sentences of detailed
+  buildup before the next plot beat, and some scenes should be longer, more
+  atmospheric passages where tension is allowed to simmer. Lean into description
+  rather than rushing toward resolution.
+- **Atmospheric pacing**: Alternate between quieter, descriptive scenes and more
+  urgent, plot-driven scenes. Let tension ebb and flow rather than climbing
+  relentlessly. Some sentences should linger to build mood; others should snap.
+  The overall rhythm should feel expansive — this is the time to let a moment
+  breathe, not to skim across it.
+- **Thematic resonance**: Let the ending reflect back on the story's central
+  theme or question, ideally with an unexpected but inevitable twist or
+  revelation.
+- **Genre-appropriate tone**: Match the requested genre's conventions and
+  emotional palette, whether creeping dread (scary), investigative unraveling
+  (mystery), reflective journey (moral), or aspirational arc (motivational).
+- **Originality**: Avoid clichés, recycled plots, stock horror tropes, and
+  generic language. Surprise the listener.
+
+SENTENCE GUIDELINES:
+- 10-25 words per sentence is a natural baseline, but let length follow the
+  story's needs. Longer, flowing descriptive sentences are appropriate for
+  atmospheric moments; shorter ones for tension.
+- Do NOT force a sentence to meet a word-count target.
+- Do NOT use a fixed number of sentences.
+- Do NOT artificially split or combine sentences just to satisfy a count.
+- Write in natural, conversational narration that sounds good when spoken aloud.
+- Each sentence should be a complete thought that another system will match
+  against its real WhisperX timing.
+
+Do NOT include visual directions, camera directions, sound effects, timestamps,
+stage directions, emojis, hashtags, narration labels, or any metadata in sentences.
+
+Return ONLY valid JSON with this exact structure:
+{
+  "title": "short compelling title",
+  "genre": "scary|mystery|moral|motivational",
+  "sentences": [
+    "Complete sentence one.",
+    "Complete sentence two."
+  ]
+}
+
+The sentences array must contain the actual narration in the exact order it
+should be spoken. Preserve the sentence boundaries naturally because another
+system will later match each sentence to its real WhisperX timing.
+"""
+
+
 def _clean_json_text(raw: str) -> str:
     """Remove accidental Markdown fences around an otherwise valid JSON response."""
     text = raw.strip()
@@ -237,6 +311,7 @@ def generate_story(
     genre: str,
     premise: str | None = None,
     model_key: str = llm_client.DEFAULT_MODEL_KEY,
+    length_mode: str = "short",
 ) -> dict:
     """Generate one structured story enforcing the story input/output contract.
 
@@ -245,6 +320,9 @@ def generate_story(
         - genre (required, str): One of "scary", "mystery", "moral", "motivational".
         - premise (optional, str | None): Story premise or hook.
         - model_key (optional, str): LLM model identifier.
+        - length_mode (optional, str): "short" (default, ~170-400 words, 15-30
+          sentences for Shorts) or "long" (~1,000-2,000 words, 60-150 sentences
+          with deeper narrative structure for 6-10 min long-form video).
     - Output:
         - JSON-compatible dict exactly containing:
             {
@@ -276,6 +354,15 @@ def generate_story(
         raise TypeError(f"model_key must be a str, got {type(model_key).__name__}")
     model_key = model_key or llm_client.DEFAULT_MODEL_KEY
 
+    if not isinstance(length_mode, str) or length_mode.strip().lower() not in ALLOWED_LENGTH_MODES:
+        raise ValueError(
+            f"length_mode must be one of {ALLOWED_LENGTH_MODES!r}, got {length_mode!r}"
+        )
+    length_mode = length_mode.strip().lower()
+
+    system_prompt = STORY_SYSTEM_PROMPT_LONG if length_mode == "long" else STORY_SYSTEM_PROMPT
+    max_tokens = DEFAULT_MAX_TOKENS_LONG if length_mode == "long" else DEFAULT_MAX_TOKENS
+
     premise_text = (
         premise.strip()
         if premise and premise.strip()
@@ -288,14 +375,16 @@ def generate_story(
         "Write the complete story now and return only the requested JSON."
     )
 
+    temperature = 0.8 if length_mode == "short" else 0.5
+
     raw = llm_client.call_llm(
         messages=[
-            {"role": "system", "content": STORY_SYSTEM_PROMPT},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},
         ],
         model_key=model_key,
-        temperature=0.8,
-        max_tokens=DEFAULT_MAX_TOKENS,
+        temperature=temperature,
+        max_tokens=max_tokens,
     )
 
     try:
@@ -326,9 +415,17 @@ def generate_story(
 
 
 if __name__ == "__main__":
+    print("=== SHORT (default) ===")
     story = generate_story(
         genre="scary",
         premise="A man keeps hearing three knocks on his door at exactly 3:00 AM.",
     )
+    print(json.dumps(story, indent=2, ensure_ascii=False))
 
+    print("\n=== LONG ===")
+    story = generate_story(
+        genre="scary",
+        premise="A man keeps hearing three knocks on his door at exactly 3:00 AM.",
+        length_mode="long",
+    )
     print(json.dumps(story, indent=2, ensure_ascii=False))
