@@ -30,7 +30,7 @@ import re
 import llm_client
 
 
-DEFAULT_MAX_TOKENS = 6096
+DEFAULT_MAX_TOKENS = 8096
 DEFAULT_MAX_TOKENS_LONG = 15288
 
 ALLOWED_GENRES = ("scary", "mystery", "moral", "motivational")

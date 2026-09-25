@@ -26,9 +26,9 @@ from pathlib import Path
 # Default TTS settings — tuned for YouTube Shorts
 # ---------------------------------------------------------------------------
 
-VOICE = "en-US-AndrewNeural"
+VOICE = "en-US-BrianNeural"
 RATE = "+20%"       # faster-paced for Shorts retention
-PITCH = "+0Hz"      # natural
+PITCH = "+10Hz"      # natural
 VOLUME = "+0%"      # default
 
 OUTPUT_DIR = Path("output")
