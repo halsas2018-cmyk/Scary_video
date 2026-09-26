@@ -546,12 +546,14 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
     )
     print(f"  ✓ metadata.txt")
 
-    # --- YouTube metadata ---
+    # --- YouTube metadata (fallback headline) ---
     youtube_meta = {
-        "youtube_title": title,
-        "youtube_description": f"{title} — A {genre} story.\n\n#shorts #{genre} #story",
-        "genre": genre,
-        "sentences": sentences,
+        "youtube_title": story.get("title", ""),
+        "youtube_description": "",
+        "on_screen_hook": story.get("sentences", [""])[0] if story.get("sentences") else "",
+        "headline_options": [],
+        "video_title_source": story["title"],
+        "source_link": "",
     }
     (project_dir / "youtube_meta.json").write_text(
         json.dumps(youtube_meta, indent=2), encoding="utf-8"
@@ -634,6 +636,20 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
             print(f"  ✓ thumbnail_notes.txt (fallback)")
         except Exception as te:
             print(f"  ✗ thumbnail_notes.txt FAILED: {te}")
+
+    # --- YouTube metadata (with storyboard headline) ---
+    youtube_meta = {
+        "youtube_title": story.get("title", ""),
+        "youtube_description": "",
+        "on_screen_hook": sb_result.get("headline", "") if sb_result and isinstance(sb_result, dict) else (story.get("sentences", [""])[0] if story.get("sentences") else ""),
+        "headline_options": [],
+        "video_title_source": story["title"],
+        "source_link": "",
+    }
+    (project_dir / "youtube_meta.json").write_text(
+        json.dumps(youtube_meta, indent=2), encoding="utf-8"
+    )
+    print(f"  ✓ youtube_meta.json")
 
     # --- Edit plan ---
     try:
