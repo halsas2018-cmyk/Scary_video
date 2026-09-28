@@ -1,1774 +1,1481 @@
 {
   "shots": [
     {
-      "sentence": "My daughter has insisted for weeks that a man lives inside her bedroom closet.",
-      "search_term": "scared child bedroom",
+      "sentence": "My daughter has been talking to the empty corner of her bedroom for three weeks.",
+      "search_term": "child talking empty",
       "media_type": "video",
-      "visual": "A young girl sitting on her bed looking afraid toward a closet door.",
+      "visual": "A young girl sitting on her bed, talking to an empty corner of a dimly lit room.",
       "asset_path": "project_assets/shot_1.mp4",
-      "duration_seconds": 3.603,
-      "start": 0.131,
-      "end": 3.734
+      "duration_seconds": 3.262,
+      "start": 0.151,
+      "end": 3.413
     },
     {
-      "sentence": "She tells me he wears a gray suit and smells like damp earth and old library books.",
-      "search_term": "dark vintage closet",
+      "sentence": "She calls him Mr. Scratch, claiming he lives behind the peeling floral wallpaper.",
+      "search_term": "peeling floral wallpaper",
       "media_type": "photo",
-      "visual": "A dark, dusty vintage suit jacket hanging in a dim closet.",
+      "visual": "Close up of old, peeling floral wallpaper in a dark room.",
       "asset_path": "project_assets/shot_2.jpg",
-      "duration_seconds": 3.543,
-      "start": 4.194,
-      "end": 7.737
+      "duration_seconds": 3.983,
+      "start": 3.893,
+      "end": 7.876
     },
     {
-      "sentence": "I checked behind the sliding doors every single night, finding nothing but her hanging sundresses and a pile of discarded sneakers.",
-      "search_term": "opening closet door",
+      "sentence": "I dismissed it as a lonely child\u2019s vivid imagination until I found the scratches.",
+      "search_term": "person touching wall",
       "media_type": "video",
-      "visual": "A person sliding open a closet door to reveal clothes hanging inside.",
+      "visual": "A parent looking concerned while touching a damaged wall.",
       "asset_path": "project_assets/shot_3.mp4",
-      "duration_seconds": 6.145,
-      "start": 8.238,
-      "end": 14.383
+      "duration_seconds": 3.903,
+      "start": 8.316,
+      "end": 12.219
     },
     {
-      "sentence": "Last night, I finally decided to set up a motion-activated camera to prove to her that the closet was empty.",
-      "search_term": "security camera indoor",
-      "media_type": "video",
-      "visual": "A small security camera being placed on a bedroom shelf.",
-      "asset_path": "project_assets/shot_4.mp4",
-      "duration_seconds": 5.185,
-      "start": 14.863,
-      "end": 20.048
+      "sentence": "Four deep, jagged gouges marred the drywall near the floorboards, smelling faintly of sulfur.",
+      "search_term": "scratches on wall",
+      "media_type": "photo",
+      "visual": "Close up of deep, sharp scratches on a white wall near the floor.",
+      "asset_path": "project_assets/shot_4.jpg",
+      "duration_seconds": 3.983,
+      "start": 13.499,
+      "end": 17.482
     },
     {
-      "sentence": "I sat on the edge of her bed, watching the red light on the lens blink steadily in the darkness.",
-      "search_term": "blinking red light",
+      "sentence": "Last night, I decided to end the nonsense once and for all.",
+      "search_term": "person looking determined",
       "media_type": "video",
-      "visual": "Close up of a blinking red LED light in a dark room.",
+      "visual": "A person looking determined and stern in a dark hallway.",
       "asset_path": "project_assets/shot_5.mp4",
-      "duration_seconds": 4.422,
-      "start": 20.468,
-      "end": 24.89
+      "duration_seconds": 2.722,
+      "start": 17.862,
+      "end": 20.584
     },
     {
-      "sentence": "She fell asleep holding my hand, her breathing slow and rhythmic against the silence of the house.",
-      "search_term": "holding hands bed",
+      "sentence": "I sat in the dark, clutching a flashlight, waiting for her to start her nightly ritual.",
+      "search_term": "hand holding flashlight",
       "media_type": "video",
-      "visual": "A parent holding a child's hand in a dark bedroom.",
+      "visual": "A hand holding a flashlight in a pitch-black room.",
       "asset_path": "project_assets/shot_6.mp4",
-      "duration_seconds": 4.503,
-      "start": 25.37,
-      "end": 29.873
+      "duration_seconds": 4.403,
+      "start": 21.024,
+      "end": 25.427
     },
     {
-      "sentence": "I stayed until my eyelids grew heavy, eventually drifting off right there beside her.",
-      "search_term": "sleeping in bed",
+      "sentence": "When she finally whispered, I am ready now, the room temperature plummeted until my breath misted in the air.",
+      "search_term": "breath in cold",
       "media_type": "video",
-      "visual": "A person resting their head on a pillow in a dark room.",
+      "visual": "A person exhaling visible breath in a cold, dark room.",
       "asset_path": "project_assets/shot_7.mp4",
-      "duration_seconds": 4.222,
-      "start": 30.393,
-      "end": 34.615
+      "duration_seconds": 5.724,
+      "start": 25.807,
+      "end": 31.531
     },
     {
-      "sentence": "When I woke up this morning, the camera was still recording, its battery light glowing a steady, reassuring green.",
-      "search_term": "green light camera",
+      "sentence": "I flicked on the light, expecting to find nothing but silence and shadows.",
+      "search_term": "hand light switch",
+      "media_type": "video",
+      "visual": "A hand flipping a light switch on a wall.",
+      "asset_path": "project_assets/shot_8.mp4",
+      "duration_seconds": 3.803,
+      "start": 31.971,
+      "end": 35.774
+    },
+    {
+      "sentence": "Instead, the wallpaper was shredded into ribbons, revealing a hollow space behind the studs.",
+      "search_term": "ripped wallpaper",
       "media_type": "photo",
-      "visual": "A small camera lens glowing with a green light.",
-      "asset_path": "project_assets/shot_8.jpg",
-      "duration_seconds": 5.683,
-      "start": 34.995,
-      "end": 40.678
+      "visual": "Torn wallpaper hanging in strips over a dark hole in a wall.",
+      "asset_path": "project_assets/shot_9.jpg",
+      "duration_seconds": 4.843,
+      "start": 36.234,
+      "end": 41.077
     },
     {
-      "sentence": "I took the memory card to my laptop, eager to show her the empty footage and end this silly game for good.",
-      "search_term": "laptop memory card",
+      "sentence": "My heart hammered against my ribs as I shined the beam into the dark recess.",
+      "search_term": "flashlight beam dark",
       "media_type": "video",
-      "visual": "A person inserting a memory card into a laptop computer.",
-      "asset_path": "project_assets/shot_9.mp4",
-      "duration_seconds": 4.844,
-      "start": 41.098,
-      "end": 45.942
-    },
-    {
-      "sentence": "The video started with the door opening at three in the morning.",
-      "search_term": "creepy door opening",
-      "media_type": "video",
-      "visual": "A closet door slowly creaking open in the dark.",
+      "visual": "A flashlight beam cutting through darkness inside a wall cavity.",
       "asset_path": "project_assets/shot_10.mp4",
-      "duration_seconds": 2.663,
-      "start": 46.323,
-      "end": 48.986
+      "duration_seconds": 3.583,
+      "start": 41.577,
+      "end": 45.16
     },
     {
-      "sentence": "A man in a charcoal suit stepped out, his face obscured by long, matted hair.",
-      "search_term": "shadowy figure standing",
+      "sentence": "I didn't find a monster, or a prankster, or even a stray animal.",
+      "search_term": "person looking scared",
       "media_type": "video",
-      "visual": "A dark, shadowy figure standing in a doorway.",
+      "visual": "A person looking confused and scared while peering into a dark space.",
       "asset_path": "project_assets/shot_11.mp4",
-      "duration_seconds": 4.325,
-      "start": 49.447,
-      "end": 53.772
+      "duration_seconds": 3.162,
+      "start": 45.6,
+      "end": 48.762
     },
     {
-      "sentence": "He didn't look at my daughter or reach for her toys.",
-      "search_term": "abandoned toy floor",
+      "sentence": "I found a small, handwritten journal dated fifty years before we moved into this house.",
+      "search_term": "old vintage journal",
       "media_type": "photo",
-      "visual": "A child's toy lying abandoned on a bedroom floor.",
+      "visual": "An old, dusty leather journal lying on a wooden floor.",
       "asset_path": "project_assets/shot_12.jpg",
-      "duration_seconds": 2.083,
-      "start": 54.152,
-      "end": 56.235
+      "duration_seconds": 3.863,
+      "start": 49.182,
+      "end": 53.045
     },
     {
-      "sentence": "Instead, he walked directly to the foot of the bed and leaned over, staring straight into the camera lens.",
-      "search_term": "dark silhouette bed",
-      "media_type": "video",
-      "visual": "A dark silhouette leaning over a bed frame.",
-      "asset_path": "project_assets/shot_13.mp4",
-      "duration_seconds": 5.046,
-      "start": 56.696,
-      "end": 61.742
-    },
-    {
-      "sentence": "My blood turned to ice as I realized he wasn't looking at the camera at all.",
-      "search_term": "person looking shocked",
-      "media_type": "video",
-      "visual": "A person looking shocked and terrified at a laptop screen.",
-      "asset_path": "project_assets/shot_14.mp4",
-      "duration_seconds": 3.306,
-      "start": 62.162,
-      "end": 65.468
-    },
-    {
-      "sentence": "He was looking at me, sleeping soundly just inches away.",
-      "search_term": "person sleeping dark",
-      "media_type": "video",
-      "visual": "A close up of a sleeping person's face in the dark.",
-      "asset_path": "project_assets/shot_15.mp4",
-      "duration_seconds": 2.946,
-      "start": 65.869,
-      "end": 68.815
-    },
-    {
-      "sentence": "Then, he pressed a finger to his lips, leaned down, and whispered my own name into the microphone.",
-      "search_term": "finger on lips",
+      "sentence": "The final entry was written in my own handwriting, detailing the exact layout of this bedroom.",
+      "search_term": "handwriting on paper",
       "media_type": "photo",
-      "visual": "A shadowy hand making a shushing gesture.",
-      "asset_path": "project_assets/shot_16.jpg",
-      "duration_seconds": 5.05,
-      "start": 69.235,
-      "end": 74.285
+      "visual": "Close up of handwritten ink on aged, yellowed paper.",
+      "asset_path": "project_assets/shot_13.jpg",
+      "duration_seconds": 4.686,
+      "start": 53.485,
+      "end": 58.171
     },
     {
-      "sentence": "I froze as I heard the bedroom door behind me creak open.",
-      "search_term": "door handle turning",
+      "sentence": "It ended with a single, chilling instruction for whoever found the book.",
+      "search_term": "person reading book",
       "media_type": "video",
-      "visual": "A bedroom door handle slowly turning.",
+      "visual": "A person reading a book with a terrified expression.",
+      "asset_path": "project_assets/shot_14.mp4",
+      "duration_seconds": 3.046,
+      "start": 58.592,
+      "end": 61.638
+    },
+    {
+      "sentence": "Do not let the child look behind the wallpaper, or the cycle begins again.",
+      "search_term": "shadow on wall",
+      "media_type": "video",
+      "visual": "A blurred shadow moving across a dark bedroom wall.",
+      "asset_path": "project_assets/shot_15.mp4",
+      "duration_seconds": 3.646,
+      "start": 62.119,
+      "end": 65.765
+    },
+    {
+      "sentence": "I heard a faint, wet sound behind me and realized I was no longer standing in the room alone.",
+      "search_term": "person looking back",
+      "media_type": "video",
+      "visual": "A person standing still in a dark room, looking over their shoulder.",
+      "asset_path": "project_assets/shot_16.mp4",
+      "duration_seconds": 4.409,
+      "start": 66.226,
+      "end": 70.635
+    },
+    {
+      "sentence": "The door clicked shut, and the lights refused to turn back on.",
+      "search_term": "door closing dark",
+      "media_type": "video",
+      "visual": "A door slowly closing in a dark, empty house.",
       "asset_path": "project_assets/shot_17.mp4",
-      "duration_seconds": 2.604,
-      "start": 74.666,
-      "end": 77.27
-    },
-    {
-      "sentence": "I realized then that the man in the video wasn't coming out of the closet anymore.",
-      "search_term": "dark hallway house",
-      "media_type": "video",
-      "visual": "A dark, empty hallway outside a bedroom.",
-      "asset_path": "project_assets/shot_18.mp4",
-      "duration_seconds": 3.447,
-      "start": 77.691,
-      "end": 81.138
-    },
-    {
-      "sentence": "He was already standing right behind me.",
-      "search_term": "scary shadow looming",
-      "media_type": "video",
-      "visual": "A dark, blurry shadow looming behind a person.",
-      "asset_path": "project_assets/shot_19.mp4",
-      "duration_seconds": 1.643,
-      "start": 81.538,
-      "end": 83.181
+      "duration_seconds": 3.005,
+      "start": 71.016,
+      "end": 74.021
     }
   ],
   "words": [
     {
       "word": "My",
-      "start": 0.131,
-      "end": 0.231
+      "start": 0.151,
+      "end": 0.271
     },
     {
       "word": "daughter",
-      "start": 0.271,
-      "end": 0.551
+      "start": 0.311,
+      "end": 0.591
     },
     {
       "word": "has",
-      "start": 0.591,
-      "end": 0.732
+      "start": 0.631,
+      "end": 0.731
     },
     {
-      "word": "insisted",
-      "start": 0.772,
-      "end": 1.152
+      "word": "been",
+      "start": 0.751,
+      "end": 0.892
     },
     {
-      "word": "for",
-      "start": 1.212,
-      "end": 1.312
-    },
-    {
-      "word": "weeks",
-      "start": 1.372,
-      "end": 1.592
-    },
-    {
-      "word": "that",
-      "start": 1.692,
-      "end": 1.833
-    },
-    {
-      "word": "a",
-      "start": 1.873,
-      "end": 1.893
-    },
-    {
-      "word": "man",
-      "start": 1.933,
-      "end": 2.153
-    },
-    {
-      "word": "lives",
-      "start": 2.213,
-      "end": 2.453
-    },
-    {
-      "word": "inside",
-      "start": 2.573,
-      "end": 2.893
-    },
-    {
-      "word": "her",
-      "start": 2.933,
-      "end": 3.013
-    },
-    {
-      "word": "bedroom",
-      "start": 3.074,
-      "end": 3.374
-    },
-    {
-      "word": "closet.",
-      "start": 3.394,
-      "end": 3.734
-    },
-    {
-      "word": "She",
-      "start": 4.194,
-      "end": 4.295
-    },
-    {
-      "word": "tells",
-      "start": 4.335,
-      "end": 4.515
-    },
-    {
-      "word": "me",
-      "start": 4.555,
-      "end": 4.635
-    },
-    {
-      "word": "he",
-      "start": 4.675,
-      "end": 4.735
-    },
-    {
-      "word": "wears",
-      "start": 4.775,
-      "end": 4.955
-    },
-    {
-      "word": "a",
-      "start": 4.995,
-      "end": 5.015
-    },
-    {
-      "word": "grey",
-      "start": 5.055,
-      "end": 5.235
-    },
-    {
-      "word": "suit",
-      "start": 5.315,
-      "end": 5.516
-    },
-    {
-      "word": "and",
-      "start": 5.616,
-      "end": 5.696
-    },
-    {
-      "word": "smells",
-      "start": 5.756,
-      "end": 6.036
-    },
-    {
-      "word": "like",
-      "start": 6.076,
-      "end": 6.216
-    },
-    {
-      "word": "damp",
-      "start": 6.256,
-      "end": 6.496
-    },
-    {
-      "word": "earth",
-      "start": 6.536,
-      "end": 6.717
-    },
-    {
-      "word": "and",
-      "start": 6.817,
-      "end": 6.917
-    },
-    {
-      "word": "old",
-      "start": 6.957,
-      "end": 7.097
-    },
-    {
-      "word": "library",
-      "start": 7.137,
-      "end": 7.497
-    },
-    {
-      "word": "books.",
-      "start": 7.517,
-      "end": 7.737
-    },
-    {
-      "word": "I",
-      "start": 8.238,
-      "end": 8.298
-    },
-    {
-      "word": "checked",
-      "start": 8.358,
-      "end": 8.578
-    },
-    {
-      "word": "behind",
-      "start": 8.638,
-      "end": 8.918
-    },
-    {
-      "word": "the",
-      "start": 8.958,
-      "end": 9.019
-    },
-    {
-      "word": "sliding",
-      "start": 9.059,
-      "end": 9.399
-    },
-    {
-      "word": "doors",
-      "start": 9.419,
-      "end": 9.699
-    },
-    {
-      "word": "every",
-      "start": 9.859,
-      "end": 10.019
-    },
-    {
-      "word": "single",
-      "start": 10.079,
-      "end": 10.3
-    },
-    {
-      "word": "night,",
-      "start": 10.36,
-      "end": 10.52
-    },
-    {
-      "word": "finding",
-      "start": 11.12,
-      "end": 11.401
-    },
-    {
-      "word": "nothing",
-      "start": 11.441,
-      "end": 11.721
-    },
-    {
-      "word": "but",
-      "start": 11.781,
-      "end": 11.901
-    },
-    {
-      "word": "her",
-      "start": 11.921,
-      "end": 12.001
-    },
-    {
-      "word": "hanging",
-      "start": 12.061,
-      "end": 12.301
-    },
-    {
-      "word": "sunglasses",
-      "start": 12.341,
-      "end": 12.842
-    },
-    {
-      "word": "and",
-      "start": 12.962,
-      "end": 13.042
-    },
-    {
-      "word": "a",
-      "start": 13.082,
-      "end": 13.102
-    },
-    {
-      "word": "pile",
-      "start": 13.142,
-      "end": 13.462
-    },
-    {
-      "word": "of",
-      "start": 13.502,
-      "end": 13.542
-    },
-    {
-      "word": "discarded",
-      "start": 13.582,
-      "end": 14.003
-    },
-    {
-      "word": "sneakers.",
-      "start": 14.043,
-      "end": 14.383
-    },
-    {
-      "word": "Last",
-      "start": 14.863,
-      "end": 15.084
-    },
-    {
-      "word": "night,",
-      "start": 15.164,
-      "end": 15.344
-    },
-    {
-      "word": "I",
-      "start": 15.884,
-      "end": 15.964
-    },
-    {
-      "word": "finally",
-      "start": 16.024,
-      "end": 16.325
-    },
-    {
-      "word": "decided",
-      "start": 16.365,
-      "end": 16.705
+      "word": "talking",
+      "start": 0.932,
+      "end": 1.252
     },
     {
       "word": "to",
-      "start": 16.745,
-      "end": 16.805
-    },
-    {
-      "word": "set",
-      "start": 16.845,
-      "end": 16.985
-    },
-    {
-      "word": "up",
-      "start": 17.025,
-      "end": 17.125
-    },
-    {
-      "word": "a",
-      "start": 17.165,
-      "end": 17.205
-    },
-    {
-      "word": "motion-activated",
-      "start": 17.245,
-      "end": 17.926
-    },
-    {
-      "word": "camera",
-      "start": 17.946,
-      "end": 18.286
-    },
-    {
-      "word": "to",
-      "start": 18.326,
-      "end": 18.386
-    },
-    {
-      "word": "prove",
-      "start": 18.446,
-      "end": 18.647
-    },
-    {
-      "word": "to",
-      "start": 18.687,
-      "end": 18.747
-    },
-    {
-      "word": "her",
-      "start": 18.807,
-      "end": 18.947
-    },
-    {
-      "word": "that",
-      "start": 19.047,
-      "end": 19.147
+      "start": 1.292,
+      "end": 1.372
     },
     {
       "word": "the",
-      "start": 19.167,
-      "end": 19.247
-    },
-    {
-      "word": "closet",
-      "start": 19.287,
-      "end": 19.607
-    },
-    {
-      "word": "was",
-      "start": 19.627,
-      "end": 19.727
-    },
-    {
-      "word": "empty.",
-      "start": 19.808,
-      "end": 20.048
-    },
-    {
-      "word": "I",
-      "start": 20.468,
-      "end": 20.528
-    },
-    {
-      "word": "sat",
-      "start": 20.608,
-      "end": 20.828
-    },
-    {
-      "word": "on",
-      "start": 20.888,
-      "end": 20.948
-    },
-    {
-      "word": "the",
-      "start": 20.968,
-      "end": 21.048
-    },
-    {
-      "word": "edge",
-      "start": 21.128,
-      "end": 21.228
-    },
-    {
-      "word": "of",
-      "start": 21.248,
-      "end": 21.308
-    },
-    {
-      "word": "her",
-      "start": 21.328,
-      "end": 21.429
-    },
-    {
-      "word": "bed,",
-      "start": 21.449,
-      "end": 21.649
-    },
-    {
-      "word": "watching",
-      "start": 22.229,
-      "end": 22.529
-    },
-    {
-      "word": "the",
-      "start": 22.549,
-      "end": 22.629
-    },
-    {
-      "word": "red",
-      "start": 22.669,
-      "end": 22.809
-    },
-    {
-      "word": "light",
-      "start": 22.869,
-      "end": 23.069
-    },
-    {
-      "word": "on",
-      "start": 23.149,
-      "end": 23.209
-    },
-    {
-      "word": "the",
-      "start": 23.229,
-      "end": 23.309
-    },
-    {
-      "word": "lens",
-      "start": 23.329,
-      "end": 23.59
-    },
-    {
-      "word": "blink",
-      "start": 23.63,
-      "end": 23.87
-    },
-    {
-      "word": "steadily",
-      "start": 23.91,
-      "end": 24.29
-    },
-    {
-      "word": "in",
-      "start": 24.37,
-      "end": 24.43
-    },
-    {
-      "word": "the",
-      "start": 24.45,
-      "end": 24.51
-    },
-    {
-      "word": "darkness.",
-      "start": 24.55,
-      "end": 24.89
-    },
-    {
-      "word": "She",
-      "start": 25.37,
-      "end": 25.47
-    },
-    {
-      "word": "fell",
-      "start": 25.51,
-      "end": 25.671
-    },
-    {
-      "word": "asleep",
-      "start": 25.691,
-      "end": 26.011
-    },
-    {
-      "word": "holding",
-      "start": 26.071,
-      "end": 26.311
-    },
-    {
-      "word": "my",
-      "start": 26.351,
-      "end": 26.451
-    },
-    {
-      "word": "hand,",
-      "start": 26.491,
-      "end": 26.731
-    },
-    {
-      "word": "her",
-      "start": 27.231,
-      "end": 27.331
-    },
-    {
-      "word": "breathing",
-      "start": 27.371,
-      "end": 27.692
-    },
-    {
-      "word": "slow",
-      "start": 27.752,
-      "end": 28.072
-    },
-    {
-      "word": "and",
-      "start": 28.152,
-      "end": 28.232
-    },
-    {
-      "word": "rhythmic",
-      "start": 28.272,
-      "end": 28.592
-    },
-    {
-      "word": "against",
-      "start": 28.712,
-      "end": 28.932
-    },
-    {
-      "word": "the",
-      "start": 28.952,
-      "end": 29.032
-    },
-    {
-      "word": "silence",
-      "start": 29.072,
-      "end": 29.432
-    },
-    {
-      "word": "of",
-      "start": 29.452,
-      "end": 29.512
-    },
-    {
-      "word": "the",
-      "start": 29.532,
-      "end": 29.612
-    },
-    {
-      "word": "house.",
-      "start": 29.653,
-      "end": 29.873
-    },
-    {
-      "word": "I",
-      "start": 30.393,
-      "end": 30.433
-    },
-    {
-      "word": "stayed",
-      "start": 30.513,
-      "end": 30.793
-    },
-    {
-      "word": "until",
-      "start": 30.853,
-      "end": 31.073
-    },
-    {
-      "word": "my",
-      "start": 31.113,
-      "end": 31.213
-    },
-    {
-      "word": "eyelids",
-      "start": 31.333,
-      "end": 31.613
-    },
-    {
-      "word": "grew",
-      "start": 31.653,
-      "end": 31.814
-    },
-    {
-      "word": "heavy,",
-      "start": 31.874,
-      "end": 32.134
-    },
-    {
-      "word": "eventually",
-      "start": 32.694,
-      "end": 33.114
-    },
-    {
-      "word": "drifting",
-      "start": 33.154,
-      "end": 33.494
-    },
-    {
-      "word": "off",
-      "start": 33.554,
-      "end": 33.694
-    },
-    {
-      "word": "right",
-      "start": 33.774,
-      "end": 33.935
-    },
-    {
-      "word": "there",
-      "start": 33.955,
-      "end": 34.115
-    },
-    {
-      "word": "beside",
-      "start": 34.155,
-      "end": 34.455
-    },
-    {
-      "word": "her.",
-      "start": 34.495,
-      "end": 34.615
-    },
-    {
-      "word": "When",
-      "start": 34.995,
-      "end": 35.115
-    },
-    {
-      "word": "I",
-      "start": 35.135,
-      "end": 35.175
-    },
-    {
-      "word": "woke",
-      "start": 35.235,
-      "end": 35.395
-    },
-    {
-      "word": "up",
-      "start": 35.435,
-      "end": 35.495
-    },
-    {
-      "word": "this",
-      "start": 35.535,
-      "end": 35.675
-    },
-    {
-      "word": "morning,",
-      "start": 35.735,
-      "end": 36.016
-    },
-    {
-      "word": "the",
-      "start": 36.236,
-      "end": 36.316
-    },
-    {
-      "word": "camera",
-      "start": 36.336,
-      "end": 36.656
-    },
-    {
-      "word": "was",
-      "start": 36.676,
-      "end": 36.776
-    },
-    {
-      "word": "still",
-      "start": 36.796,
-      "end": 36.976
-    },
-    {
-      "word": "recording.",
-      "start": 37.036,
-      "end": 37.436
-    },
-    {
-      "word": "It's",
-      "start": 37.997,
-      "end": 38.097
-    },
-    {
-      "word": "battery",
-      "start": 38.157,
-      "end": 38.457
-    },
-    {
-      "word": "light",
-      "start": 38.497,
-      "end": 38.697
-    },
-    {
-      "word": "glowing",
-      "start": 38.737,
-      "end": 39.017
-    },
-    {
-      "word": "a",
-      "start": 39.037,
-      "end": 39.097
-    },
-    {
-      "word": "steady,",
-      "start": 39.117,
-      "end": 39.417
-    },
-    {
-      "word": "reassuring",
-      "start": 39.917,
-      "end": 40.358
-    },
-    {
-      "word": "green.",
-      "start": 40.398,
-      "end": 40.678
-    },
-    {
-      "word": "I",
-      "start": 41.098,
-      "end": 41.138
-    },
-    {
-      "word": "took",
-      "start": 41.178,
-      "end": 41.318
-    },
-    {
-      "word": "the",
-      "start": 41.338,
-      "end": 41.418
-    },
-    {
-      "word": "memory",
-      "start": 41.458,
-      "end": 41.698
-    },
-    {
-      "word": "card",
-      "start": 41.738,
-      "end": 41.938
-    },
-    {
-      "word": "to",
-      "start": 41.958,
-      "end": 42.038
-    },
-    {
-      "word": "my",
-      "start": 42.059,
-      "end": 42.139
-    },
-    {
-      "word": "laptop.",
-      "start": 42.179,
-      "end": 42.579
-    },
-    {
-      "word": "Eager",
-      "start": 43.179,
-      "end": 43.359
-    },
-    {
-      "word": "to",
-      "start": 43.379,
-      "end": 43.459
-    },
-    {
-      "word": "show",
-      "start": 43.5,
-      "end": 43.68
-    },
-    {
-      "word": "her",
-      "start": 43.72,
-      "end": 43.8
-    },
-    {
-      "word": "the",
-      "start": 43.84,
-      "end": 43.92
+      "start": 1.392,
+      "end": 1.472
     },
     {
       "word": "empty",
-      "start": 43.96,
-      "end": 44.16
+      "start": 1.532,
+      "end": 1.732
     },
     {
-      "word": "footage",
-      "start": 44.2,
-      "end": 44.501
+      "word": "corner",
+      "start": 1.772,
+      "end": 2.052
     },
     {
-      "word": "and",
-      "start": 44.641,
-      "end": 44.741
-    },
-    {
-      "word": "end",
-      "start": 44.821,
-      "end": 44.921
-    },
-    {
-      "word": "the",
-      "start": 44.961,
-      "end": 45.081
-    },
-    {
-      "word": "silly",
-      "start": 45.101,
-      "end": 45.342
-    },
-    {
-      "word": "game",
-      "start": 45.362,
-      "end": 45.562
-    },
-    {
-      "word": "for",
-      "start": 45.602,
-      "end": 45.702
-    },
-    {
-      "word": "good.",
-      "start": 45.742,
-      "end": 45.942
-    },
-    {
-      "word": "The",
-      "start": 46.323,
-      "end": 46.403
-    },
-    {
-      "word": "video",
-      "start": 46.443,
-      "end": 46.763
-    },
-    {
-      "word": "started",
-      "start": 46.804,
-      "end": 47.084
-    },
-    {
-      "word": "with",
-      "start": 47.144,
-      "end": 47.264
-    },
-    {
-      "word": "the",
-      "start": 47.284,
-      "end": 47.344
-    },
-    {
-      "word": "door",
-      "start": 47.384,
-      "end": 47.605
-    },
-    {
-      "word": "opening",
-      "start": 47.725,
-      "end": 47.985
-    },
-    {
-      "word": "at",
-      "start": 48.065,
-      "end": 48.145
-    },
-    {
-      "word": "three",
-      "start": 48.185,
-      "end": 48.466
-    },
-    {
-      "word": "in",
-      "start": 48.546,
-      "end": 48.606
-    },
-    {
-      "word": "the",
-      "start": 48.626,
-      "end": 48.706
-    },
-    {
-      "word": "morning.",
-      "start": 48.726,
-      "end": 48.986
-    },
-    {
-      "word": "A",
-      "start": 49.447,
-      "end": 49.467
-    },
-    {
-      "word": "man",
-      "start": 49.507,
-      "end": 49.747
-    },
-    {
-      "word": "in",
-      "start": 49.787,
-      "end": 49.867
-    },
-    {
-      "word": "a",
-      "start": 49.887,
-      "end": 49.927
-    },
-    {
-      "word": "charcoal",
-      "start": 49.967,
-      "end": 50.328
-    },
-    {
-      "word": "suit",
-      "start": 50.368,
-      "end": 50.568
-    },
-    {
-      "word": "stepped",
-      "start": 50.648,
-      "end": 50.889
-    },
-    {
-      "word": "out.",
-      "start": 50.969,
-      "end": 51.089
-    },
-    {
-      "word": "His",
-      "start": 51.77,
-      "end": 51.89
-    },
-    {
-      "word": "face",
-      "start": 51.95,
-      "end": 52.21
-    },
-    {
-      "word": "obscured",
-      "start": 52.27,
-      "end": 52.691
-    },
-    {
-      "word": "by",
-      "start": 52.731,
-      "end": 52.871
-    },
-    {
-      "word": "long",
-      "start": 52.911,
-      "end": 53.171
-    },
-    {
-      "word": "matted",
-      "start": 53.271,
-      "end": 53.512
-    },
-    {
-      "word": "hair.",
-      "start": 53.552,
-      "end": 53.772
-    },
-    {
-      "word": "He",
-      "start": 54.152,
-      "end": 54.233
-    },
-    {
-      "word": "didn't",
-      "start": 54.253,
-      "end": 54.413
-    },
-    {
-      "word": "look",
-      "start": 54.453,
-      "end": 54.593
-    },
-    {
-      "word": "at",
-      "start": 54.613,
-      "end": 54.673
-    },
-    {
-      "word": "my",
-      "start": 54.713,
-      "end": 54.833
-    },
-    {
-      "word": "daughter",
-      "start": 54.853,
-      "end": 55.174
-    },
-    {
-      "word": "or",
-      "start": 55.274,
-      "end": 55.374
-    },
-    {
-      "word": "reach",
-      "start": 55.414,
-      "end": 55.634
-    },
-    {
-      "word": "for",
-      "start": 55.674,
-      "end": 55.774
+      "word": "of",
+      "start": 2.132,
+      "end": 2.192
     },
     {
       "word": "her",
-      "start": 55.815,
-      "end": 55.895
-    },
-    {
-      "word": "toys.",
-      "start": 55.935,
-      "end": 56.235
-    },
-    {
-      "word": "Instead,",
-      "start": 56.696,
-      "end": 57.076
-    },
-    {
-      "word": "he",
-      "start": 57.256,
-      "end": 57.356
-    },
-    {
-      "word": "walked",
-      "start": 57.416,
-      "end": 57.677
-    },
-    {
-      "word": "directly",
-      "start": 57.737,
-      "end": 58.097
-    },
-    {
-      "word": "to",
-      "start": 58.157,
-      "end": 58.237
-    },
-    {
-      "word": "the",
-      "start": 58.257,
-      "end": 58.318
-    },
-    {
-      "word": "foot",
-      "start": 58.358,
-      "end": 58.498
-    },
-    {
-      "word": "of",
-      "start": 58.518,
-      "end": 58.558
-    },
-    {
-      "word": "the",
-      "start": 58.598,
-      "end": 58.658
-    },
-    {
-      "word": "bed",
-      "start": 58.698,
-      "end": 58.898
-    },
-    {
-      "word": "and",
-      "start": 58.998,
-      "end": 59.078
-    },
-    {
-      "word": "leaned",
-      "start": 59.119,
-      "end": 59.339
-    },
-    {
-      "word": "over,",
-      "start": 59.419,
-      "end": 59.619
-    },
-    {
-      "word": "staring",
-      "start": 60.18,
-      "end": 60.52
-    },
-    {
-      "word": "straight",
-      "start": 60.58,
-      "end": 60.861
-    },
-    {
-      "word": "into",
-      "start": 60.961,
-      "end": 61.101
-    },
-    {
-      "word": "the",
-      "start": 61.121,
-      "end": 61.181
-    },
-    {
-      "word": "camera",
-      "start": 61.201,
-      "end": 61.501
-    },
-    {
-      "word": "lens.",
-      "start": 61.521,
-      "end": 61.742
-    },
-    {
-      "word": "My",
-      "start": 62.162,
-      "end": 62.283
-    },
-    {
-      "word": "blood",
-      "start": 62.323,
-      "end": 62.563
-    },
-    {
-      "word": "turned",
-      "start": 62.623,
-      "end": 62.824
-    },
-    {
-      "word": "to",
-      "start": 62.864,
-      "end": 62.944
-    },
-    {
-      "word": "ice",
-      "start": 63.064,
-      "end": 63.204
-    },
-    {
-      "word": "as",
-      "start": 63.304,
-      "end": 63.385
-    },
-    {
-      "word": "I",
-      "start": 63.445,
-      "end": 63.505
-    },
-    {
-      "word": "realized",
-      "start": 63.545,
-      "end": 63.966
-    },
-    {
-      "word": "he",
-      "start": 64.006,
-      "end": 64.086
-    },
-    {
-      "word": "wasn't",
-      "start": 64.126,
-      "end": 64.346
-    },
-    {
-      "word": "looking",
-      "start": 64.366,
-      "end": 64.607
-    },
-    {
-      "word": "at",
-      "start": 64.627,
-      "end": 64.687
-    },
-    {
-      "word": "the",
-      "start": 64.707,
-      "end": 64.787
-    },
-    {
-      "word": "camera",
-      "start": 64.807,
-      "end": 65.148
-    },
-    {
-      "word": "at",
-      "start": 65.188,
-      "end": 65.248
-    },
-    {
-      "word": "all.",
-      "start": 65.328,
-      "end": 65.468
-    },
-    {
-      "word": "He",
-      "start": 65.869,
-      "end": 65.949
-    },
-    {
-      "word": "was",
-      "start": 65.969,
-      "end": 66.07
-    },
-    {
-      "word": "looking",
-      "start": 66.09,
-      "end": 66.35
-    },
-    {
-      "word": "at",
-      "start": 66.39,
-      "end": 66.45
-    },
-    {
-      "word": "me,",
-      "start": 66.49,
-      "end": 66.631
-    },
-    {
-      "word": "sleeping",
-      "start": 67.232,
-      "end": 67.572
-    },
-    {
-      "word": "soundly",
-      "start": 67.633,
-      "end": 67.973
-    },
-    {
-      "word": "just",
-      "start": 68.033,
-      "end": 68.214
-    },
-    {
-      "word": "inches",
-      "start": 68.274,
-      "end": 68.514
-    },
-    {
-      "word": "away.",
-      "start": 68.574,
-      "end": 68.815
-    },
-    {
-      "word": "Then",
-      "start": 69.235,
-      "end": 69.456
-    },
-    {
-      "word": "he",
-      "start": 69.536,
-      "end": 69.616
-    },
-    {
-      "word": "pressed",
-      "start": 69.676,
-      "end": 69.897
-    },
-    {
-      "word": "a",
-      "start": 69.937,
-      "end": 69.977
-    },
-    {
-      "word": "finger",
-      "start": 70.037,
-      "end": 70.257
-    },
-    {
-      "word": "to",
-      "start": 70.297,
-      "end": 70.378
-    },
-    {
-      "word": "his",
-      "start": 70.418,
-      "end": 70.498
-    },
-    {
-      "word": "lips,",
-      "start": 70.558,
-      "end": 70.758
-    },
-    {
-      "word": "leaned",
-      "start": 71.359,
-      "end": 71.6
-    },
-    {
-      "word": "down,",
-      "start": 71.62,
-      "end": 71.9
-    },
-    {
-      "word": "and",
-      "start": 72.401,
-      "end": 72.502
-    },
-    {
-      "word": "whispered",
-      "start": 72.542,
-      "end": 72.842
-    },
-    {
-      "word": "my",
-      "start": 72.882,
-      "end": 73.002
-    },
-    {
-      "word": "own",
-      "start": 73.063,
-      "end": 73.203
-    },
-    {
-      "word": "name",
-      "start": 73.263,
-      "end": 73.503
-    },
-    {
-      "word": "into",
-      "start": 73.563,
-      "end": 73.724
-    },
-    {
-      "word": "the",
-      "start": 73.744,
-      "end": 73.804
-    },
-    {
-      "word": "microphone.",
-      "start": 73.824,
-      "end": 74.285
-    },
-    {
-      "word": "I",
-      "start": 74.666,
-      "end": 74.706
-    },
-    {
-      "word": "froze",
-      "start": 74.766,
-      "end": 75.046
-    },
-    {
-      "word": "as",
-      "start": 75.126,
-      "end": 75.186
-    },
-    {
-      "word": "I",
-      "start": 75.247,
-      "end": 75.287
-    },
-    {
-      "word": "heard",
-      "start": 75.347,
-      "end": 75.527
-    },
-    {
-      "word": "the",
-      "start": 75.567,
-      "end": 75.647
+      "start": 2.232,
+      "end": 2.332
     },
     {
       "word": "bedroom",
-      "start": 75.687,
-      "end": 76.028
+      "start": 2.352,
+      "end": 2.713
     },
     {
-      "word": "door",
-      "start": 76.048,
-      "end": 76.289
+      "word": "for",
+      "start": 2.793,
+      "end": 2.913
+    },
+    {
+      "word": "three",
+      "start": 2.953,
+      "end": 3.133
+    },
+    {
+      "word": "weeks.",
+      "start": 3.173,
+      "end": 3.413
+    },
+    {
+      "word": "She",
+      "start": 3.893,
+      "end": 3.993
+    },
+    {
+      "word": "calls",
+      "start": 4.033,
+      "end": 4.274
+    },
+    {
+      "word": "him",
+      "start": 4.294,
+      "end": 4.394
+    },
+    {
+      "word": "Mr.",
+      "start": 4.434,
+      "end": 4.634
+    },
+    {
+      "word": "Scratch,",
+      "start": 4.674,
+      "end": 5.014
+    },
+    {
+      "word": "claiming",
+      "start": 5.554,
+      "end": 5.855
+    },
+    {
+      "word": "he",
+      "start": 5.895,
+      "end": 5.975
+    },
+    {
+      "word": "lives",
+      "start": 6.035,
+      "end": 6.255
     },
     {
       "word": "behind",
-      "start": 76.349,
-      "end": 76.589
+      "start": 6.335,
+      "end": 6.615
     },
     {
-      "word": "me",
-      "start": 76.609,
-      "end": 76.689
+      "word": "the",
+      "start": 6.635,
+      "end": 6.715
     },
     {
-      "word": "creak",
-      "start": 76.749,
-      "end": 76.97
+      "word": "peeling",
+      "start": 6.735,
+      "end": 7.035
     },
     {
-      "word": "open.",
-      "start": 77.03,
-      "end": 77.27
+      "word": "floral",
+      "start": 7.095,
+      "end": 7.376
+    },
+    {
+      "word": "wallpaper.",
+      "start": 7.396,
+      "end": 7.876
     },
     {
       "word": "I",
-      "start": 77.691,
-      "end": 77.751
+      "start": 8.316,
+      "end": 8.376
     },
     {
-      "word": "realized",
-      "start": 77.791,
-      "end": 78.172
+      "word": "dismissed",
+      "start": 8.416,
+      "end": 8.816
     },
     {
-      "word": "then",
-      "start": 78.212,
-      "end": 78.412
+      "word": "it",
+      "start": 8.856,
+      "end": 8.917
     },
     {
-      "word": "that",
-      "start": 78.493,
-      "end": 78.633
+      "word": "as",
+      "start": 9.057,
+      "end": 9.137
+    },
+    {
+      "word": "a",
+      "start": 9.197,
+      "end": 9.237
+    },
+    {
+      "word": "lonely",
+      "start": 9.277,
+      "end": 9.577
+    },
+    {
+      "word": "child's",
+      "start": 9.617,
+      "end": 10.017
+    },
+    {
+      "word": "vivid",
+      "start": 10.097,
+      "end": 10.317
+    },
+    {
+      "word": "imagination",
+      "start": 10.337,
+      "end": 10.938
+    },
+    {
+      "word": "until",
+      "start": 11.078,
+      "end": 11.298
+    },
+    {
+      "word": "I",
+      "start": 11.338,
+      "end": 11.418
+    },
+    {
+      "word": "found",
+      "start": 11.458,
+      "end": 11.658
     },
     {
       "word": "the",
-      "start": 78.653,
-      "end": 78.753
+      "start": 11.698,
+      "end": 11.758
     },
     {
-      "word": "man",
-      "start": 78.793,
-      "end": 78.974
+      "word": "scratches.",
+      "start": 11.798,
+      "end": 12.219
     },
     {
-      "word": "in",
-      "start": 79.014,
-      "end": 79.074
+      "word": "For",
+      "start": 12.659,
+      "end": 12.799
+    },
+    {
+      "word": "deep,",
+      "start": 12.819,
+      "end": 13.059
+    },
+    {
+      "word": "jagged",
+      "start": 13.499,
+      "end": 13.8
+    },
+    {
+      "word": "gouges",
+      "start": 13.84,
+      "end": 14.2
+    },
+    {
+      "word": "marred",
+      "start": 14.26,
+      "end": 14.46
     },
     {
       "word": "the",
-      "start": 79.094,
-      "end": 79.154
+      "start": 14.48,
+      "end": 14.56
     },
     {
-      "word": "video",
-      "start": 79.194,
-      "end": 79.535
+      "word": "drywall",
+      "start": 14.58,
+      "end": 15.02
     },
     {
-      "word": "wasn't",
-      "start": 79.615,
-      "end": 79.855
+      "word": "near",
+      "start": 15.06,
+      "end": 15.18
     },
     {
-      "word": "coming",
-      "start": 79.895,
-      "end": 80.096
+      "word": "the",
+      "start": 15.2,
+      "end": 15.26
     },
     {
-      "word": "out",
-      "start": 80.136,
-      "end": 80.216
+      "word": "floorboards,",
+      "start": 15.3,
+      "end": 15.761
+    },
+    {
+      "word": "smelling",
+      "start": 16.301,
+      "end": 16.621
+    },
+    {
+      "word": "faintly",
+      "start": 16.701,
+      "end": 17.002
     },
     {
       "word": "of",
-      "start": 80.236,
-      "end": 80.276
+      "start": 17.042,
+      "end": 17.102
+    },
+    {
+      "word": "sulfur.",
+      "start": 17.142,
+      "end": 17.482
+    },
+    {
+      "word": "Last",
+      "start": 17.862,
+      "end": 18.082
+    },
+    {
+      "word": "night,",
+      "start": 18.142,
+      "end": 18.342
+    },
+    {
+      "word": "I",
+      "start": 18.462,
+      "end": 18.522
+    },
+    {
+      "word": "decided",
+      "start": 18.563,
+      "end": 18.903
+    },
+    {
+      "word": "to",
+      "start": 18.923,
+      "end": 19.003
+    },
+    {
+      "word": "end",
+      "start": 19.083,
+      "end": 19.203
     },
     {
       "word": "the",
-      "start": 80.296,
-      "end": 80.356
+      "start": 19.223,
+      "end": 19.283
     },
     {
-      "word": "closet",
-      "start": 80.396,
-      "end": 80.737
+      "word": "nonsense",
+      "start": 19.343,
+      "end": 19.723
     },
     {
-      "word": "anymore.",
-      "start": 80.817,
-      "end": 81.138
+      "word": "once",
+      "start": 19.863,
+      "end": 20.023
     },
     {
-      "word": "He",
-      "start": 81.538,
-      "end": 81.618
+      "word": "and",
+      "start": 20.123,
+      "end": 20.224
+    },
+    {
+      "word": "for",
+      "start": 20.264,
+      "end": 20.384
+    },
+    {
+      "word": "all.",
+      "start": 20.464,
+      "end": 20.584
+    },
+    {
+      "word": "I",
+      "start": 21.024,
+      "end": 21.104
+    },
+    {
+      "word": "sat",
+      "start": 21.164,
+      "end": 21.344
+    },
+    {
+      "word": "in",
+      "start": 21.384,
+      "end": 21.424
+    },
+    {
+      "word": "the",
+      "start": 21.444,
+      "end": 21.524
+    },
+    {
+      "word": "dark,",
+      "start": 21.544,
+      "end": 21.805
+    },
+    {
+      "word": "clutching",
+      "start": 22.245,
+      "end": 22.545
+    },
+    {
+      "word": "a",
+      "start": 22.585,
+      "end": 22.625
+    },
+    {
+      "word": "flashlight,",
+      "start": 22.645,
+      "end": 23.125
+    },
+    {
+      "word": "waiting",
+      "start": 23.626,
+      "end": 23.886
+    },
+    {
+      "word": "for",
+      "start": 23.906,
+      "end": 24.006
+    },
+    {
+      "word": "her",
+      "start": 24.046,
+      "end": 24.166
+    },
+    {
+      "word": "to",
+      "start": 24.206,
+      "end": 24.286
+    },
+    {
+      "word": "start",
+      "start": 24.326,
+      "end": 24.586
+    },
+    {
+      "word": "her",
+      "start": 24.626,
+      "end": 24.726
+    },
+    {
+      "word": "nightly",
+      "start": 24.786,
+      "end": 25.067
+    },
+    {
+      "word": "ritual.",
+      "start": 25.107,
+      "end": 25.427
+    },
+    {
+      "word": "When",
+      "start": 25.807,
+      "end": 25.927
+    },
+    {
+      "word": "she",
+      "start": 25.947,
+      "end": 26.067
+    },
+    {
+      "word": "finally",
+      "start": 26.127,
+      "end": 26.447
+    },
+    {
+      "word": "whispered,",
+      "start": 26.487,
+      "end": 26.848
+    },
+    {
+      "word": "I",
+      "start": 27.488,
+      "end": 27.548
+    },
+    {
+      "word": "am",
+      "start": 27.588,
+      "end": 27.668
+    },
+    {
+      "word": "ready",
+      "start": 27.708,
+      "end": 27.888
+    },
+    {
+      "word": "now.",
+      "start": 27.948,
+      "end": 28.149
+    },
+    {
+      "word": "The",
+      "start": 28.729,
+      "end": 28.829
+    },
+    {
+      "word": "room",
+      "start": 28.869,
+      "end": 29.069
+    },
+    {
+      "word": "temperature",
+      "start": 29.109,
+      "end": 29.509
+    },
+    {
+      "word": "plummeted",
+      "start": 29.569,
+      "end": 29.95
+    },
+    {
+      "word": "until",
+      "start": 30.05,
+      "end": 30.25
+    },
+    {
+      "word": "my",
+      "start": 30.27,
+      "end": 30.37
+    },
+    {
+      "word": "breath",
+      "start": 30.43,
+      "end": 30.69
+    },
+    {
+      "word": "missed",
+      "start": 30.79,
+      "end": 30.99
+    },
+    {
+      "word": "it",
+      "start": 31.01,
+      "end": 31.09
+    },
+    {
+      "word": "in",
+      "start": 31.13,
+      "end": 31.191
+    },
+    {
+      "word": "the",
+      "start": 31.211,
+      "end": 31.311
+    },
+    {
+      "word": "air.",
+      "start": 31.391,
+      "end": 31.531
+    },
+    {
+      "word": "I",
+      "start": 31.971,
+      "end": 32.051
+    },
+    {
+      "word": "flicked",
+      "start": 32.111,
+      "end": 32.371
+    },
+    {
+      "word": "on",
+      "start": 32.411,
+      "end": 32.491
+    },
+    {
+      "word": "the",
+      "start": 32.511,
+      "end": 32.591
+    },
+    {
+      "word": "light,",
+      "start": 32.631,
+      "end": 32.832
+    },
+    {
+      "word": "expecting",
+      "start": 33.352,
+      "end": 33.772
+    },
+    {
+      "word": "to",
+      "start": 33.812,
+      "end": 33.872
+    },
+    {
+      "word": "find",
+      "start": 33.912,
+      "end": 34.152
+    },
+    {
+      "word": "nothing",
+      "start": 34.253,
+      "end": 34.533
+    },
+    {
+      "word": "but",
+      "start": 34.573,
+      "end": 34.693
+    },
+    {
+      "word": "silence",
+      "start": 34.773,
+      "end": 35.173
+    },
+    {
+      "word": "and",
+      "start": 35.253,
+      "end": 35.333
+    },
+    {
+      "word": "shadows.",
+      "start": 35.373,
+      "end": 35.774
+    },
+    {
+      "word": "Instead,",
+      "start": 36.234,
+      "end": 36.654
+    },
+    {
+      "word": "the",
+      "start": 37.054,
+      "end": 37.134
+    },
+    {
+      "word": "wallpaper",
+      "start": 37.174,
+      "end": 37.615
     },
     {
       "word": "was",
-      "start": 81.638,
-      "end": 81.759
+      "start": 37.655,
+      "end": 37.755
     },
     {
-      "word": "already",
-      "start": 81.799,
-      "end": 82.039
+      "word": "shredded",
+      "start": 37.815,
+      "end": 38.115
     },
     {
-      "word": "standing",
-      "start": 82.099,
-      "end": 82.42
+      "word": "into",
+      "start": 38.175,
+      "end": 38.335
     },
     {
-      "word": "right",
-      "start": 82.48,
-      "end": 82.66
+      "word": "ribbons,",
+      "start": 38.395,
+      "end": 38.675
+    },
+    {
+      "word": "revealing",
+      "start": 39.236,
+      "end": 39.596
+    },
+    {
+      "word": "a",
+      "start": 39.636,
+      "end": 39.676
+    },
+    {
+      "word": "hollow",
+      "start": 39.736,
+      "end": 39.996
+    },
+    {
+      "word": "space",
+      "start": 40.036,
+      "end": 40.337
     },
     {
       "word": "behind",
-      "start": 82.72,
-      "end": 83.041
+      "start": 40.417,
+      "end": 40.677
     },
     {
-      "word": "me.",
-      "start": 83.101,
-      "end": 83.181
+      "word": "the",
+      "start": 40.697,
+      "end": 40.777
+    },
+    {
+      "word": "studs.",
+      "start": 40.797,
+      "end": 41.077
+    },
+    {
+      "word": "My",
+      "start": 41.577,
+      "end": 41.677
+    },
+    {
+      "word": "heart",
+      "start": 41.737,
+      "end": 41.938
+    },
+    {
+      "word": "hammered",
+      "start": 42.018,
+      "end": 42.338
+    },
+    {
+      "word": "against",
+      "start": 42.358,
+      "end": 42.598
+    },
+    {
+      "word": "my",
+      "start": 42.658,
+      "end": 42.778
+    },
+    {
+      "word": "ribs",
+      "start": 42.838,
+      "end": 43.078
+    },
+    {
+      "word": "as",
+      "start": 43.238,
+      "end": 43.319
+    },
+    {
+      "word": "I",
+      "start": 43.379,
+      "end": 43.439
+    },
+    {
+      "word": "shined",
+      "start": 43.499,
+      "end": 43.779
+    },
+    {
+      "word": "the",
+      "start": 43.799,
+      "end": 43.879
+    },
+    {
+      "word": "beam",
+      "start": 43.919,
+      "end": 44.179
+    },
+    {
+      "word": "into",
+      "start": 44.279,
+      "end": 44.439
+    },
+    {
+      "word": "the",
+      "start": 44.459,
+      "end": 44.539
+    },
+    {
+      "word": "dark",
+      "start": 44.559,
+      "end": 44.759
+    },
+    {
+      "word": "recess.",
+      "start": 44.82,
+      "end": 45.16
+    },
+    {
+      "word": "I",
+      "start": 45.6,
+      "end": 45.66
+    },
+    {
+      "word": "didn't",
+      "start": 45.68,
+      "end": 45.84
+    },
+    {
+      "word": "find",
+      "start": 45.88,
+      "end": 46.04
+    },
+    {
+      "word": "a",
+      "start": 46.08,
+      "end": 46.1
+    },
+    {
+      "word": "monster",
+      "start": 46.16,
+      "end": 46.561
+    },
+    {
+      "word": "or",
+      "start": 46.681,
+      "end": 46.761
+    },
+    {
+      "word": "a",
+      "start": 46.781,
+      "end": 46.801
+    },
+    {
+      "word": "prankster,",
+      "start": 46.861,
+      "end": 47.301
+    },
+    {
+      "word": "or",
+      "start": 47.761,
+      "end": 47.842
+    },
+    {
+      "word": "even",
+      "start": 47.922,
+      "end": 48.062
+    },
+    {
+      "word": "a",
+      "start": 48.102,
+      "end": 48.122
+    },
+    {
+      "word": "stray",
+      "start": 48.162,
+      "end": 48.422
+    },
+    {
+      "word": "animal.",
+      "start": 48.502,
+      "end": 48.762
+    },
+    {
+      "word": "I",
+      "start": 49.182,
+      "end": 49.242
+    },
+    {
+      "word": "found",
+      "start": 49.282,
+      "end": 49.483
+    },
+    {
+      "word": "a",
+      "start": 49.523,
+      "end": 49.543
+    },
+    {
+      "word": "small",
+      "start": 49.603,
+      "end": 49.943
+    },
+    {
+      "word": "handwritten",
+      "start": 50.063,
+      "end": 50.463
+    },
+    {
+      "word": "journal",
+      "start": 50.503,
+      "end": 50.763
+    },
+    {
+      "word": "dated",
+      "start": 50.783,
+      "end": 51.044
+    },
+    {
+      "word": "50",
+      "start": 51.144,
+      "end": 51.324
+    },
+    {
+      "word": "years",
+      "start": 51.364,
+      "end": 51.604
+    },
+    {
+      "word": "before",
+      "start": 51.684,
+      "end": 51.964
+    },
+    {
+      "word": "we",
+      "start": 52.004,
+      "end": 52.084
+    },
+    {
+      "word": "moved",
+      "start": 52.144,
+      "end": 52.385
+    },
+    {
+      "word": "into",
+      "start": 52.465,
+      "end": 52.625
+    },
+    {
+      "word": "this",
+      "start": 52.665,
+      "end": 52.785
+    },
+    {
+      "word": "house.",
+      "start": 52.805,
+      "end": 53.045
+    },
+    {
+      "word": "The",
+      "start": 53.485,
+      "end": 53.585
+    },
+    {
+      "word": "final",
+      "start": 53.625,
+      "end": 53.886
+    },
+    {
+      "word": "entry",
+      "start": 53.946,
+      "end": 54.206
+    },
+    {
+      "word": "was",
+      "start": 54.266,
+      "end": 54.366
+    },
+    {
+      "word": "written",
+      "start": 54.426,
+      "end": 54.666
+    },
+    {
+      "word": "in",
+      "start": 54.726,
+      "end": 54.786
+    },
+    {
+      "word": "my",
+      "start": 54.826,
+      "end": 54.946
+    },
+    {
+      "word": "own",
+      "start": 55.006,
+      "end": 55.126
+    },
+    {
+      "word": "handwriting.",
+      "start": 55.166,
+      "end": 55.627
+    },
+    {
+      "word": "detailing",
+      "start": 56.187,
+      "end": 56.648
+    },
+    {
+      "word": "the",
+      "start": 56.688,
+      "end": 56.768
+    },
+    {
+      "word": "exact",
+      "start": 56.828,
+      "end": 57.129
+    },
+    {
+      "word": "layout",
+      "start": 57.189,
+      "end": 57.51
+    },
+    {
+      "word": "of",
+      "start": 57.57,
+      "end": 57.63
+    },
+    {
+      "word": "this",
+      "start": 57.67,
+      "end": 57.79
+    },
+    {
+      "word": "bedroom.",
+      "start": 57.83,
+      "end": 58.171
+    },
+    {
+      "word": "It",
+      "start": 58.592,
+      "end": 58.652
+    },
+    {
+      "word": "ended",
+      "start": 58.712,
+      "end": 58.912
+    },
+    {
+      "word": "with",
+      "start": 58.952,
+      "end": 59.093
+    },
+    {
+      "word": "a",
+      "start": 59.133,
+      "end": 59.173
+    },
+    {
+      "word": "single,",
+      "start": 59.253,
+      "end": 59.614
+    },
+    {
+      "word": "chilling",
+      "start": 59.734,
+      "end": 60.014
+    },
+    {
+      "word": "instruction",
+      "start": 60.055,
+      "end": 60.535
+    },
+    {
+      "word": "for",
+      "start": 60.616,
+      "end": 60.716
+    },
+    {
+      "word": "whoever",
+      "start": 60.756,
+      "end": 61.056
+    },
+    {
+      "word": "found",
+      "start": 61.117,
+      "end": 61.317
+    },
+    {
+      "word": "the",
+      "start": 61.357,
+      "end": 61.417
+    },
+    {
+      "word": "book.",
+      "start": 61.457,
+      "end": 61.638
+    },
+    {
+      "word": "Do",
+      "start": 62.119,
+      "end": 62.219
+    },
+    {
+      "word": "not",
+      "start": 62.259,
+      "end": 62.399
+    },
+    {
+      "word": "let",
+      "start": 62.439,
+      "end": 62.599
+    },
+    {
+      "word": "the",
+      "start": 62.64,
+      "end": 62.7
+    },
+    {
+      "word": "child",
+      "start": 62.74,
+      "end": 63.06
+    },
+    {
+      "word": "look",
+      "start": 63.1,
+      "end": 63.281
+    },
+    {
+      "word": "behind",
+      "start": 63.341,
+      "end": 63.581
+    },
+    {
+      "word": "the",
+      "start": 63.621,
+      "end": 63.682
+    },
+    {
+      "word": "wallpaper",
+      "start": 63.722,
+      "end": 64.223
+    },
+    {
+      "word": "or",
+      "start": 64.663,
+      "end": 64.744
+    },
+    {
+      "word": "the",
+      "start": 64.784,
+      "end": 64.864
+    },
+    {
+      "word": "cycle",
+      "start": 64.904,
+      "end": 65.184
+    },
+    {
+      "word": "begins",
+      "start": 65.204,
+      "end": 65.485
+    },
+    {
+      "word": "again.",
+      "start": 65.545,
+      "end": 65.765
+    },
+    {
+      "word": "I",
+      "start": 66.226,
+      "end": 66.266
+    },
+    {
+      "word": "heard",
+      "start": 66.307,
+      "end": 66.447
+    },
+    {
+      "word": "a",
+      "start": 66.487,
+      "end": 66.527
+    },
+    {
+      "word": "faint,",
+      "start": 66.567,
+      "end": 66.807
+    },
+    {
+      "word": "wet",
+      "start": 67.349,
+      "end": 67.509
+    },
+    {
+      "word": "sound",
+      "start": 67.549,
+      "end": 67.769
+    },
+    {
+      "word": "behind",
+      "start": 67.809,
+      "end": 68.09
+    },
+    {
+      "word": "me",
+      "start": 68.13,
+      "end": 68.25
+    },
+    {
+      "word": "and",
+      "start": 68.33,
+      "end": 68.411
+    },
+    {
+      "word": "realized",
+      "start": 68.451,
+      "end": 68.871
+    },
+    {
+      "word": "I",
+      "start": 68.952,
+      "end": 68.992
+    },
+    {
+      "word": "was",
+      "start": 69.032,
+      "end": 69.132
+    },
+    {
+      "word": "no",
+      "start": 69.192,
+      "end": 69.292
+    },
+    {
+      "word": "longer",
+      "start": 69.332,
+      "end": 69.573
+    },
+    {
+      "word": "standing",
+      "start": 69.633,
+      "end": 69.974
+    },
+    {
+      "word": "in",
+      "start": 69.994,
+      "end": 70.054
+    },
+    {
+      "word": "the",
+      "start": 70.074,
+      "end": 70.134
+    },
+    {
+      "word": "room",
+      "start": 70.174,
+      "end": 70.314
+    },
+    {
+      "word": "alone.",
+      "start": 70.354,
+      "end": 70.635
+    },
+    {
+      "word": "The",
+      "start": 71.016,
+      "end": 71.116
+    },
+    {
+      "word": "door",
+      "start": 71.136,
+      "end": 71.356
+    },
+    {
+      "word": "clicked",
+      "start": 71.416,
+      "end": 71.637
+    },
+    {
+      "word": "shut",
+      "start": 71.677,
+      "end": 71.877
+    },
+    {
+      "word": "and",
+      "start": 72.378,
+      "end": 72.458
+    },
+    {
+      "word": "the",
+      "start": 72.498,
+      "end": 72.559
+    },
+    {
+      "word": "lights",
+      "start": 72.599,
+      "end": 72.839
+    },
+    {
+      "word": "refused",
+      "start": 72.919,
+      "end": 73.32
+    },
+    {
+      "word": "to",
+      "start": 73.34,
+      "end": 73.42
+    },
+    {
+      "word": "turn",
+      "start": 73.46,
+      "end": 73.621
+    },
+    {
+      "word": "back",
+      "start": 73.661,
+      "end": 73.821
+    },
+    {
+      "word": "on.",
+      "start": 73.921,
+      "end": 74.021
     }
   ],
   "timing": [
     {
-      "start": 0.131,
-      "end": 3.734
+      "start": 0.151,
+      "end": 3.413
     },
     {
-      "start": 4.194,
-      "end": 7.737
+      "start": 3.893,
+      "end": 7.876
     },
     {
-      "start": 8.238,
-      "end": 14.383
+      "start": 8.316,
+      "end": 12.219
     },
     {
-      "start": 14.863,
-      "end": 20.048
+      "start": 13.499,
+      "end": 17.482
     },
     {
-      "start": 20.468,
-      "end": 24.89
+      "start": 17.862,
+      "end": 20.584
     },
     {
-      "start": 25.37,
-      "end": 29.873
+      "start": 21.024,
+      "end": 25.427
     },
     {
-      "start": 30.393,
-      "end": 34.615
+      "start": 25.807,
+      "end": 31.531
     },
     {
-      "start": 34.995,
-      "end": 40.678
+      "start": 31.971,
+      "end": 35.774
     },
     {
-      "start": 41.098,
-      "end": 45.942
+      "start": 36.234,
+      "end": 41.077
     },
     {
-      "start": 46.323,
-      "end": 48.986
+      "start": 41.577,
+      "end": 45.16
     },
     {
-      "start": 49.447,
-      "end": 53.772
+      "start": 45.6,
+      "end": 48.762
     },
     {
-      "start": 54.152,
-      "end": 56.235
+      "start": 49.182,
+      "end": 53.045
     },
     {
-      "start": 56.696,
-      "end": 61.742
+      "start": 53.485,
+      "end": 58.171
     },
     {
-      "start": 62.162,
-      "end": 65.468
+      "start": 58.592,
+      "end": 61.638
     },
     {
-      "start": 65.869,
-      "end": 68.815
+      "start": 62.119,
+      "end": 65.765
     },
     {
-      "start": 69.235,
-      "end": 74.285
+      "start": 66.226,
+      "end": 70.635
     },
     {
-      "start": 74.666,
-      "end": 77.27
-    },
-    {
-      "start": 77.691,
-      "end": 81.138
-    },
-    {
-      "start": 81.538,
-      "end": 83.181
+      "start": 71.016,
+      "end": 74.021
     }
   ],
   "narrationSrc": "project_assets/narration.mp3"

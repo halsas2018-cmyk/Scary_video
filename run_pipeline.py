@@ -79,7 +79,7 @@ from story_generator import (
     ALLOWED_GENRES,
 )
 from voice_generator import generate_narration
-from storyboard_generator import generate_storyboard
+from storyboard_generator import generate_storyboard, generate_youtube_metadata
 from asset_collector import collect_assets, collect_assets_for_plan, collect_assets_for_plan_with_fallback
 from remotion_assembler import assemble_video_remotion
 
@@ -547,12 +547,30 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
     print(f"  ✓ metadata.txt")
 
     # --- YouTube metadata (fallback headline) ---
+    # Build initial metadata - will be updated after storyboard generation
+    story_title = story.get("title", "")
+    story_genre = story.get("genre", "")
+    story_sentences = story.get("sentences", [])
+    first_sentence = story_sentences[0] if story_sentences else ""
+
+    # Build initial description from title and genre
+    desc_parts = []
+    if story_title:
+        desc_parts.append(story_title)
+    if story_genre:
+        desc_parts.append(f"#{story_genre} story")
+    initial_description = " ".join(desc_parts)
+
+    # Derive initial headline options from title words
+    import re
+    title_keywords = [w for w in re.findall(r'\b[A-Za-z]{4,}\b', story_title.lower())][:5]
+
     youtube_meta = {
-        "youtube_title": story.get("title", ""),
-        "youtube_description": "",
-        "on_screen_hook": story.get("sentences", [""])[0] if story.get("sentences") else "",
-        "headline_options": [],
-        "video_title_source": story["title"],
+        "youtube_title": story_title,
+        "youtube_description": initial_description,
+        "on_screen_hook": first_sentence[:80] + "..." if len(first_sentence) > 80 else first_sentence,
+        "headline_options": title_keywords,
+        "video_title_source": story_title,
         "source_link": "",
     }
     (project_dir / "youtube_meta.json").write_text(
@@ -637,15 +655,33 @@ def save_project(story: dict, outdir: Path, index: int, no_video: bool = False,
         except Exception as te:
             print(f"  ✗ thumbnail_notes.txt FAILED: {te}")
 
-    # --- YouTube metadata (with storyboard headline) ---
-    youtube_meta = {
-        "youtube_title": story.get("title", ""),
-        "youtube_description": "",
-        "on_screen_hook": sb_result.get("headline", "") if sb_result and isinstance(sb_result, dict) else (story.get("sentences", [""])[0] if story.get("sentences") else ""),
-        "headline_options": [],
-        "video_title_source": story["title"],
-        "source_link": "",
-    }
+    # --- YouTube metadata (LLM-generated, with fallback) ---
+    print(f"  ─ Generating YouTube metadata...")
+    try:
+        youtube_meta = generate_youtube_metadata(
+            title=title,
+            genre=genre,
+            sentences=sentences,
+            model_key=model_key,
+        )
+        print(f"  ✓ youtube_meta.json (LLM-generated)")
+    except Exception as e:
+        print(f"  ⚠ YouTube metadata generation failed ({e}); using fallback.")
+        # Fallback logic
+        story_title = story.get("title", "")
+        story_genre = story.get("genre", "")
+        story_sentences = story.get("sentences", [])
+        first_sentence = story_sentences[0] if story_sentences else ""
+
+        youtube_meta = {
+            "youtube_title": story_title,
+            "youtube_description": f"{first_sentence} #{story_genre} #shorts #story" if first_sentence else f"{story_title} #{story_genre} #shorts #story",
+            "on_screen_hook": first_sentence[:60] + "..." if len(first_sentence) > 60 else first_sentence,
+            "headline_options": [],
+            "video_title_source": story_title,
+            "source_link": "",
+        }
+
     (project_dir / "youtube_meta.json").write_text(
         json.dumps(youtube_meta, indent=2), encoding="utf-8"
     )

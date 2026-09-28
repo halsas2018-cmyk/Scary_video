@@ -612,6 +612,138 @@ def _format_thumbnail_notes(title: str, keywords: list[str], script: str) -> str
     ])
 
 
+# ---------------------------------------------------------------------------
+# YouTube Metadata Generation (LLM-driven)
+# ---------------------------------------------------------------------------
+
+YOUTUBE_META_SYSTEM_PROMPT = """You are a YouTube metadata expert for story Shorts.
+Given a story title, genre, and full narration script, produce optimized YouTube metadata
+that drives clicks and engagement for faceless story channels.
+
+Return ONLY a JSON object (no fences, no preamble) shaped as:
+{
+  "youtube_title": "<click-worthy title, 50-70 chars, genre-appropriate>",
+  "youtube_description": "<2-3 sentence hook + genre tags + #shorts #genre #story>",
+  "on_screen_hook": "<punchy 3-6 word hook text for on-screen display>",
+  "headline_options": ["<alt title 1>", "<alt title 2>", "<alt title 3>", "<alt title 4>", "<alt title 5>"],
+  "video_title_source": "<original story title>",
+  "source_link": ""
+}
+
+Rules:
+- youtube_title: Must be compelling, genre-appropriate, 50-70 chars. Scary = ominous/mysterious. Mystery = intriguing question. Moral = lesson-focused. Motivational = empowering.
+- youtube_description: 2-3 sentences max. First sentence hooks with the core mystery/twist. Second adds genre context. End with relevant hashtags (#shorts #scary #story etc).
+- on_screen_hook: 3-6 words, the most clickable phrase from the story. No emoji, plain text.
+- headline_options: 5 alternative title variations for A/B testing. Different angles on the same story.
+- video_title_source: Pass through the original story title unchanged.
+- source_link: Leave empty string (filled in after upload if needed)."""
+
+def generate_youtube_metadata(title: str, genre: str, sentences: list[str], model_key: str = None) -> dict:
+    """Generate YouTube metadata using LLM. Falls back to rule-based if LLM unavailable."""
+    if not sentences:
+        return _fallback_youtube_metadata(title, genre, sentences)
+
+    if _call_groq is None:
+        return _fallback_youtube_metadata(title, genre, sentences)
+
+    script = " ".join(sentences)
+
+    user_prompt = f"""Title: {title}
+Genre: {genre}
+Script: {script}
+
+Generate YouTube metadata for this {genre} story Short."""
+
+    try:
+        raw = _call_groq(
+            [
+                {"role": "system", "content": YOUTUBE_META_SYSTEM_PROMPT},
+                {"role": "user", "content": user_prompt},
+            ],
+            model_key=model_key,
+            temperature=0.5,
+        )
+    except Exception as e:
+        print(f"  [storyboard] LLM youtube metadata failed ({e}); using fallback.")
+        return _fallback_youtube_metadata(title, genre, sentences)
+
+    try:
+        # Try to parse JSON
+        cleaned = re.sub(r"^```(?:json)?|```$", "", raw.strip(), flags=re.MULTILINE).strip()
+        meta = json.loads(cleaned)
+
+        # Validate required fields
+        required = ["youtube_title", "youtube_description", "on_screen_hook", "headline_options", "video_title_source", "source_link"]
+        if all(k in meta for k in required):
+            # Ensure headline_options is a list of up to 5 strings
+            if isinstance(meta["headline_options"], list):
+                meta["headline_options"] = [str(h) for h in meta["headline_options"][:5]]
+            else:
+                meta["headline_options"] = []
+            return meta
+    except (json.JSONDecodeError, KeyError):
+        pass
+
+    print(f"  [storyboard] LLM returned invalid youtube metadata; using fallback.")
+    return _fallback_youtube_metadata(title, genre, sentences)
+
+
+def _fallback_youtube_metadata(title: str, genre: str, sentences: list[str]) -> dict:
+    """Rule-based fallback when LLM is unavailable."""
+    first_sentence = sentences[0] if sentences else ""
+
+    # Genre-appropriate title templates
+    genre_prefixes = {
+        "scary": ["The Truth Behind", "What Happened When", "Don't Watch Alone:", "The Night That"],
+        "mystery": ["The Mystery of", "What They Found", "The Secret Behind", "Unsolved:"],
+        "moral": ["The Lesson", "Why You Should", "The Choice That", "What Happens When"],
+        "motivational": ["How to", "The Secret to", "Why You Can", "The Power of"],
+    }
+
+    prefixes = genre_prefixes.get(genre.lower(), ["The Story of"])
+    import random
+    prefix = random.choice(prefixes)
+
+    # Build youtube title
+    title_words = title.split()
+    if len(title_words) > 4:
+        short_title = " ".join(title_words[:4]) + "..."
+    else:
+        short_title = title
+
+    youtube_title = f"{prefix} {short_title}"
+    if len(youtube_title) > 70:
+        youtube_title = youtube_title[:67] + "..."
+
+    # Build description
+    hook = first_sentence[:100] + "..." if len(first_sentence) > 100 else first_sentence
+    genre_tags = f"#shorts #{genre} #story"
+    youtube_description = f"{hook} A {genre} story that will keep you thinking. {genre_tags}"
+
+    # On-screen hook
+    on_screen_hook = first_sentence[:40] + "..." if len(first_sentence) > 40 else first_sentence
+    if not on_screen_hook:
+        on_screen_hook = f"Wait... {title[:30]}"
+
+    # Headline options (variations)
+    headline_templates = [
+        f"{prefix} {short_title}",
+        f"What Happened Next: {short_title}",
+        f"The {genre.capitalize()} Truth: {short_title}",
+        f"Don't Ignore This: {short_title}",
+        f"The Real Story: {short_title}",
+    ]
+
+    return {
+        "youtube_title": youtube_title,
+        "youtube_description": youtube_description,
+        "on_screen_hook": on_screen_hook,
+        "headline_options": headline_templates,
+        "video_title_source": title,
+        "source_link": "",
+    }
+
+
 if __name__ == "__main__":
     import sys
     script = sys.stdin.read() if not sys.stdin.isatty() else \
