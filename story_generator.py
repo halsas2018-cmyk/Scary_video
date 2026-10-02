@@ -30,8 +30,8 @@ import re
 import llm_client
 
 
-DEFAULT_MAX_TOKENS = 8096
-DEFAULT_MAX_TOKENS_LONG = 15288
+DEFAULT_MAX_TOKENS = 18096
+DEFAULT_MAX_TOKENS_LONG = 35288
 
 ALLOWED_GENRES = ("scary", "mystery", "moral", "motivational")
 ALLOWED_LENGTH_MODES = ("short", "long")
@@ -195,7 +195,7 @@ STORY_SYSTEM_PROMPT_LONG = """You write original, engaging, and coherent long-fo
 
 Your stories sustain attention over a longer arc, unfold across multiple beats,
 and deliver a payoff that feels earned rather than sudden. You must produce at
-least 1,000 words across 60-150 natural sentences — enough length for layered
+least 1,200 words across 60-150 natural sentences — enough length for layered
 character development, sustained tension, and a narrative that can breathe. It
 is better to exceed this floor than to fall short. Do not be sparing with detail;
 long-form narration rewards expansive, descriptive prose.
