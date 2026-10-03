@@ -622,21 +622,54 @@ that drives clicks and engagement for faceless story channels.
 
 Return ONLY a JSON object (no fences, no preamble) shaped as:
 {
-  "youtube_title": "<click-worthy title, 50-70 chars, genre-appropriate>",
-  "youtube_description": "<2-3 sentence hook + genre tags + #shorts #genre #story>",
-  "on_screen_hook": "<punchy 3-6 word hook text for on-screen display>",
-  "headline_options": ["<alt title 1>", "<alt title 2>", "<alt title 3>", "<alt title 4>", "<alt title 5>"],
+  "youtube_title": "<clean title, ~15-30 chars, no hashtags, curiosity-driven>",
+  "youtube_description": "<concise premise + curiosity hook + relevant hashtags in description only>",
+  "on_screen_hook": "<very short 1-2 second hook: danger/mystery/immediate tension, no greetings/setup>",
+  "headline_options": ["<alt 1>", "<alt 2>", "<alt 3>", "<alt 4>", "<alt 5>"],
   "video_title_source": "<original story title>",
   "source_link": ""
 }
 
 Rules:
-- youtube_title: Must be compelling, genre-appropriate, 50-70 chars. Scary = ominous/mysterious. Mystery = intriguing question. Moral = lesson-focused. Motivational = empowering.
-- youtube_description: 2-3 sentences max. First sentence hooks with the core mystery/twist. Second adds genre context. End with relevant hashtags (#shorts #scary #story etc).
-- on_screen_hook: 3-6 words, the most clickable phrase from the story. No emoji, plain text.
-- headline_options: 5 alternative title variations for A/B testing. Different angles on the same story.
-- video_title_source: Pass through the original story title unchanged.
-- source_link: Leave empty string (filled in after upload if needed)."""
+
+1. youtube_title — Generate a clean YouTube Shorts title that:
+- Is approximately 15-30 characters where practical.
+- Contains NO hashtags. Never includes #shorts, #scary, #horror, #creepy, #storytime, or similar hashtags.
+- Is punchy, curiosity-driven, and natural.
+- Focuses on the strongest disturbing, mysterious, or intriguing element of the actual story.
+- Does NOT reveal the twist, ending, or main payoff.
+- Avoids generic keyword stuffing and unnecessarily long sentence-style titles.
+- Can use the supplied story title as a starting point, but may improve it when the story supports a stronger title.
+- The title should make sense as the actual title a viewer sees on YouTube.
+
+2. on_screen_hook — Generate a very short, highly attention-grabbing opening hook for the video:
+- Designed to work in the first 1-2 seconds.
+- Should immediately communicate danger, mystery, or something deeply wrong.
+- Prefer a short statement that creates an unanswered question or immediate tension.
+- Do not use greetings, introductions, generic phrases, or slow setup.
+- Do not reveal the ending/twist.
+- It should be understandable immediately when displayed on screen.
+- Keep it concise rather than writing a full sentence of exposition.
+
+3. youtube_description — Generate a concise YouTube Shorts description based on the actual full story:
+- Briefly establish the premise and central mystery/threat.
+- Create curiosity without giving away the ending or twist.
+- Use natural language rather than keyword stuffing.
+- Do not simply copy the story or repeat the title.
+- Keep the description concise and suitable for YouTube Shorts.
+- Put relevant hashtags ONLY in the description, not in youtube_title.
+- Include a small number of relevant hashtags such as #shorts #scary #horror #creepy when appropriate.
+- Do not overload the description with hashtags.
+
+4. headline_options — 5 alternative title variations for A/B testing.
+- Every variation follows the same clean-title rules as youtube_title:
+  - Approximately 15-30 characters where practical.
+  - NO hashtags.
+  - Curiosity-driven, different angles on the same story.
+  - No major twist/ending spoilers.
+
+5. video_title_source: Pass through the original story title unchanged.
+6. source_link: Leave empty string (filled in after upload if needed)."""
 
 def generate_youtube_metadata(title: str, genre: str, sentences: list[str], model_key: str = None) -> dict:
     """Generate YouTube metadata using LLM. Falls back to rule-based if LLM unavailable."""

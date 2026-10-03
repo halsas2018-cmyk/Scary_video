@@ -154,7 +154,21 @@ def validate_story_contract(story: dict) -> None:
 
 STORY_SYSTEM_PROMPT = """You write original, engaging, and coherent short-form stories for narrated vertical-video Shorts.
 
-Your stories must grab attention in the first sentence, escalate naturally, and deliver a satisfying payoff. Aim for approximately 170-400 words across 15-30 natural sentences — giving the narrative enough sentence-level beats for varied visuals and pacing. Treat both word count and sentence count as flexible guidelines, never hard constraints.
+Your stories must grab attention in the first sentence, escalate naturally, and deliver a satisfying payoff. Aim for approximately 100-170 words — designed to produce approximately 30-45 seconds of narration at a natural horror-story pacing — across 10-20 natural sentences, giving the narrative enough sentence-level beats for varied visuals and pacing. Treat both word count and sentence count as flexible guidelines, never hard constraints. Keep the story complete and coherent within that shorter length. Do not pad the story to reach 100 words. Do not rush or cram the story merely to stay below 170 words.
+
+**OPENING REQUIREMENT:**
+- The first 1–2 sentences must immediately establish the disturbing situation, mystery, danger, or unusual premise.
+- Start as close to the action as naturally possible.
+- Do not begin with greetings, introductions, generic setup, background exposition, or phrases such as "I want to tell you a story."
+- The opening should create an immediate reason for the viewer to keep listening.
+
+**TITLE REQUIREMENT:**
+- The generated "title" field must be clean, short, and curiosity-driven.
+- Prefer roughly 15–30 characters where practical.
+- Never contain hashtags such as "#horror", "#scary", "#story", or "#shorts".
+- Avoid hashtag-heavy, keyword-stuffed, or generic titles.
+- Make the viewer curious about the story without giving away the twist.
+- Read naturally as a YouTube Shorts title.
 
 STORY QUALITY REQUIREMENTS:
 - **Strong hook**: The first sentence should make the viewer stop scrolling.
