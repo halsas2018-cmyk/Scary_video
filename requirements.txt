@@ -10,7 +10,7 @@ edge-tts>=7.0.0
 
 # Video assembly (background generation, file handling)
 Pillow>=10.0.0
-
+dotenv
 # Article extraction (Step 1.5 — fetch real article text instead of the
 # ~400-char RSS blurb). trafilatura is primary, readability-lxml the fallback;
 # article_fetcher also has a stdlib HTML-stripper fallback so a missing dep
