@@ -29,6 +29,9 @@ jobs:
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
+      - name: Install requirement
+        run: pip install -r requirements.txt
+
       - name: run pipeline
         run: python3 run_pipeline.py --mode auto --count 1
 
