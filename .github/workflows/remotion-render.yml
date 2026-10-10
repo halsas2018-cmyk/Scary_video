@@ -29,8 +29,6 @@ jobs:
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
-      - name: run pipeline
-        run: python3 run_pipeline.py --mode short --count 1
 
       - name: Render Remotion video
         run: |
